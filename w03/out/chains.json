@@ -1,0 +1,1072 @@
+{
+  "_meta": {
+    "sites": [
+      "www.microsoft.com",
+      "www.netflix.com",
+      "www.adobe.com",
+      "www.cnn.com",
+      "www.apple.com",
+      "www.korea.ac.kr",
+      "www.stanford.edu",
+      "www.bbc.co.uk",
+      "www.spotify.com",
+      "www.github.com",
+      "www.wikipedia.org",
+      "www.nytimes.com"
+    ],
+    "resolvers": {
+      "system": {
+        "ip": "10.255.255.254",
+        "note": "whatever resolv.conf points at on this network"
+      },
+      "google": {
+        "ip": "8.8.8.8",
+        "note": "Google Public DNS, anycast"
+      },
+      "quad9": {
+        "ip": "9.9.9.9",
+        "note": "Quad9, anycast"
+      },
+      "kt": {
+        "ip": "168.126.63.1",
+        "note": "KT (Korea Telecom) recursive resolver, Seoul"
+      },
+      "cloudflare": {
+        "ip": "1.1.1.1",
+        "note": "Cloudflare, anycast"
+      }
+    },
+    "networks": {
+      "home-wsl": {
+        "collected_at": "2026-09-15T13:34:14+09:00",
+        "resolvers": {
+          "system": "10.255.255.254",
+          "google": "8.8.8.8",
+          "quad9": "9.9.9.9",
+          "kt": "168.126.63.1",
+          "cloudflare": "1.1.1.1"
+        }
+      }
+    }
+  },
+  "www.microsoft.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "final": "e13678.dscb.akamaiedge.net",
+            "ttl": 2
+          },
+          "google": {
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "final": "e13678.dscb.akamaiedge.net",
+            "ttl": 20
+          },
+          "quad9": {
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "addresses": [
+              "23.63.226.92"
+            ],
+            "final": "e13678.dscb.akamaiedge.net",
+            "ttl": 10
+          },
+          "kt": {
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "final": "e13678.dscb.akamaiedge.net",
+            "ttl": 8
+          },
+          "cloudflare": {
+            "chain": [
+              "www.microsoft.com",
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "addresses": [
+              "23.49.206.40"
+            ],
+            "final": "e13678.dscb.akamaiedge.net",
+            "ttl": 15
+          }
+        },
+        "ptr": {
+          "104.94.218.45": "a104-94-218-45.deploy.static.akamaitechnologies.com",
+          "23.49.206.40": "a23-49-206-40.deploy.static.akamaitechnologies.com",
+          "23.63.226.92": "a23-63-226-92.deploy.static.akamaitechnologies.com"
+        }
+      }
+    },
+    "chain": [
+      "www.microsoft.com",
+      "www.microsoft.com-c-3.edgekey.net",
+      "e13678.dscb.akamaiedge.net"
+    ],
+    "chain_length": 2,
+    "final": "e13678.dscb.akamaiedge.net",
+    "final_zone": "akamaiedge.net",
+    "naive_final_zone": "akamaiedge.net",
+    "ptr": {
+      "104.94.218.45": "a104-94-218-45.deploy.static.akamaitechnologies.com",
+      "23.49.206.40": "a23-49-206-40.deploy.static.akamaitechnologies.com",
+      "23.63.226.92": "a23-63-226-92.deploy.static.akamaitechnologies.com"
+    }
+  },
+  "www.netflix.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "final": "www.prod.ftl.netflix.com",
+            "ttl": 4
+          },
+          "google": {
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "final": "www.prod.ftl.netflix.com",
+            "ttl": 16
+          },
+          "quad9": {
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "final": "www.prod.ftl.netflix.com",
+            "ttl": 57
+          },
+          "kt": {
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "final": "www.prod.ftl.netflix.com",
+            "ttl": 24
+          },
+          "cloudflare": {
+            "chain": [
+              "www.netflix.com",
+              "www.prod.ftl.netflix.com"
+            ],
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "final": "www.prod.ftl.netflix.com",
+            "ttl": 26
+          }
+        },
+        "ptr": {
+          "207.45.72.1": "prod.ftl4.netflix.com",
+          "207.45.73.1": "prod.ftl4.netflix.com"
+        }
+      }
+    },
+    "chain": [
+      "www.netflix.com",
+      "www.prod.ftl.netflix.com"
+    ],
+    "chain_length": 1,
+    "final": "www.prod.ftl.netflix.com",
+    "final_zone": "netflix.com",
+    "naive_final_zone": "netflix.com",
+    "ptr": {
+      "207.45.72.1": "prod.ftl4.netflix.com",
+      "207.45.73.1": "prod.ftl4.netflix.com"
+    }
+  },
+  "www.adobe.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "addresses": [
+              "121.254.136.10",
+              "121.254.136.11",
+              "121.254.136.17",
+              "121.254.136.18",
+              "121.254.136.19",
+              "121.254.136.65",
+              "121.254.136.67",
+              "121.254.136.73",
+              "121.254.136.9"
+            ],
+            "final": "a1319.dscr.akamai.net",
+            "ttl": 4
+          },
+          "google": {
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "addresses": [
+              "121.254.136.11",
+              "121.254.136.153",
+              "121.254.136.154",
+              "121.254.136.17",
+              "121.254.136.24",
+              "121.254.136.65",
+              "121.254.136.66",
+              "121.254.136.73",
+              "121.254.136.74"
+            ],
+            "final": "a1319.dscr.akamai.net",
+            "ttl": 20
+          },
+          "quad9": {
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "addresses": [
+              "23.210.250.154",
+              "23.210.250.184"
+            ],
+            "final": "a1319.dscr.akamai.net",
+            "ttl": 6
+          },
+          "kt": {
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "addresses": [
+              "23.35.218.146",
+              "23.35.218.147",
+              "23.35.218.149"
+            ],
+            "final": "a1319.dscr.akamai.net",
+            "ttl": 19
+          },
+          "cloudflare": {
+            "chain": [
+              "www.adobe.com",
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "addresses": [
+              "23.59.72.42",
+              "23.59.72.43",
+              "23.59.72.48",
+              "23.59.72.56",
+              "23.59.72.58",
+              "23.59.72.65",
+              "23.59.72.74",
+              "23.59.72.75"
+            ],
+            "final": "a1319.dscr.akamai.net",
+            "ttl": 1
+          }
+        },
+        "ptr": {}
+      }
+    },
+    "chain": [
+      "www.adobe.com",
+      "www.adobe.com.edgesuite.net",
+      "a1319.dscr.akamai.net"
+    ],
+    "chain_length": 2,
+    "final": "a1319.dscr.akamai.net",
+    "final_zone": "akamai.net",
+    "naive_final_zone": "akamai.net",
+    "ptr": {}
+  },
+  "www.cnn.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.51.5"
+            ],
+            "final": "cnn-tls.map.fastly.net",
+            "ttl": 49
+          },
+          "google": {
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "final": "cnn-tls.map.fastly.net",
+            "ttl": 19
+          },
+          "quad9": {
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "final": "cnn-tls.map.fastly.net",
+            "ttl": 53
+          },
+          "kt": {
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.51.5"
+            ],
+            "final": "cnn-tls.map.fastly.net",
+            "ttl": 41
+          },
+          "cloudflare": {
+            "chain": [
+              "www.cnn.com",
+              "cnn-tls.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "final": "cnn-tls.map.fastly.net",
+            "ttl": 21
+          }
+        },
+        "ptr": {}
+      }
+    },
+    "chain": [
+      "www.cnn.com",
+      "cnn-tls.map.fastly.net"
+    ],
+    "chain_length": 1,
+    "final": "cnn-tls.map.fastly.net",
+    "final_zone": "fastly.net",
+    "naive_final_zone": "fastly.net",
+    "ptr": {}
+  },
+  "www.apple.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "addresses": [
+              "104.94.216.37"
+            ],
+            "final": "e6858.dsce9.akamaiedge.net",
+            "ttl": 2
+          },
+          "google": {
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "final": "e6858.dsce9.akamaiedge.net",
+            "ttl": 20
+          },
+          "quad9": {
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "addresses": [
+              "184.31.228.249"
+            ],
+            "final": "e6858.dsce9.akamaiedge.net",
+            "ttl": 18
+          },
+          "kt": {
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "addresses": [
+              "104.94.216.37"
+            ],
+            "final": "e6858.dsce9.akamaiedge.net",
+            "ttl": 20
+          },
+          "cloudflare": {
+            "chain": [
+              "www.apple.com",
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "final": "e6858.dsce9.akamaiedge.net",
+            "ttl": 9
+          }
+        },
+        "ptr": {
+          "104.94.216.37": "a104-94-216-37.deploy.static.akamaitechnologies.com",
+          "184.31.228.249": "a184-31-228-249.deploy.static.akamaitechnologies.com",
+          "23.49.205.28": "a23-49-205-28.deploy.static.akamaitechnologies.com"
+        }
+      }
+    },
+    "chain": [
+      "www.apple.com",
+      "www-apple-com.v.aaplimg.com",
+      "www.apple.com.edgekey.net",
+      "e6858.dsce9.akamaiedge.net"
+    ],
+    "chain_length": 3,
+    "final": "e6858.dsce9.akamaiedge.net",
+    "final_zone": "akamaiedge.net",
+    "naive_final_zone": "akamaiedge.net",
+    "ptr": {
+      "104.94.216.37": "a104-94-216-37.deploy.static.akamaitechnologies.com",
+      "184.31.228.249": "a184-31-228-249.deploy.static.akamaitechnologies.com",
+      "23.49.205.28": "a23-49-205-28.deploy.static.akamaitechnologies.com"
+    }
+  },
+  "www.korea.ac.kr": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "final": "www.korea.ac.kr",
+            "ttl": 3600
+          },
+          "google": {
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "final": "www.korea.ac.kr",
+            "ttl": 3600
+          },
+          "quad9": {
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "final": "www.korea.ac.kr",
+            "ttl": 3370
+          },
+          "kt": {
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "final": "www.korea.ac.kr",
+            "ttl": 1257
+          },
+          "cloudflare": {
+            "chain": [
+              "www.korea.ac.kr"
+            ],
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "final": "www.korea.ac.kr",
+            "ttl": 2555
+          }
+        },
+        "ptr": {
+          "163.152.6.10": "www.korea.ac.kr"
+        }
+      }
+    },
+    "chain": [
+      "www.korea.ac.kr"
+    ],
+    "chain_length": 0,
+    "final": "www.korea.ac.kr",
+    "final_zone": "korea.ac.kr",
+    "naive_final_zone": "ac.kr",
+    "ptr": {
+      "163.152.6.10": "www.korea.ac.kr"
+    }
+  },
+  "www.stanford.edu": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "final": "stanford.netlifyglobalcdn.com",
+            "ttl": 300
+          },
+          "google": {
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "final": "stanford.netlifyglobalcdn.com",
+            "ttl": 83
+          },
+          "quad9": {
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "final": "stanford.netlifyglobalcdn.com",
+            "ttl": 237
+          },
+          "kt": {
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "final": "stanford.netlifyglobalcdn.com",
+            "ttl": 243
+          },
+          "cloudflare": {
+            "chain": [
+              "www.stanford.edu",
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "final": "stanford.netlifyglobalcdn.com",
+            "ttl": 300
+          }
+        },
+        "ptr": {
+          "15.197.167.90": "afa7f374f51cc8991.awsglobalaccelerator.com",
+          "3.33.186.135": "afa7f374f51cc8991.awsglobalaccelerator.com"
+        }
+      }
+    },
+    "chain": [
+      "www.stanford.edu",
+      "stanford.netlifyglobalcdn.com"
+    ],
+    "chain_length": 1,
+    "final": "stanford.netlifyglobalcdn.com",
+    "final_zone": "netlifyglobalcdn.com",
+    "naive_final_zone": "netlifyglobalcdn.com",
+    "ptr": {
+      "15.197.167.90": "afa7f374f51cc8991.awsglobalaccelerator.com",
+      "3.33.186.135": "afa7f374f51cc8991.awsglobalaccelerator.com"
+    }
+  },
+  "www.bbc.co.uk": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.48.81"
+            ],
+            "final": "bbc.map.fastly.net",
+            "ttl": 38
+          },
+          "google": {
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "final": "bbc.map.fastly.net",
+            "ttl": 3
+          },
+          "quad9": {
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "final": "bbc.map.fastly.net",
+            "ttl": 60
+          },
+          "kt": {
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.48.81"
+            ],
+            "final": "bbc.map.fastly.net",
+            "ttl": 16
+          },
+          "cloudflare": {
+            "chain": [
+              "www.bbc.co.uk",
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "final": "bbc.map.fastly.net",
+            "ttl": 60
+          }
+        },
+        "ptr": {}
+      }
+    },
+    "chain": [
+      "www.bbc.co.uk",
+      "www.bbc.co.uk.pri.bbc.co.uk",
+      "bbc.map.fastly.net"
+    ],
+    "chain_length": 2,
+    "final": "bbc.map.fastly.net",
+    "final_zone": "fastly.net",
+    "naive_final_zone": "fastly.net",
+    "ptr": {}
+  },
+  "www.spotify.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.51.42"
+            ],
+            "final": "atc.spotify.map.fastly.net",
+            "ttl": 11
+          },
+          "google": {
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "final": "atc.spotify.map.fastly.net",
+            "ttl": 44
+          },
+          "quad9": {
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "final": "atc.spotify.map.fastly.net",
+            "ttl": 31
+          },
+          "kt": {
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.51.42"
+            ],
+            "final": "atc.spotify.map.fastly.net",
+            "ttl": 47
+          },
+          "cloudflare": {
+            "chain": [
+              "www.spotify.com",
+              "atc.spotify.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "final": "atc.spotify.map.fastly.net",
+            "ttl": 6
+          }
+        },
+        "ptr": {}
+      }
+    },
+    "chain": [
+      "www.spotify.com",
+      "atc.spotify.map.fastly.net"
+    ],
+    "chain_length": 1,
+    "final": "atc.spotify.map.fastly.net",
+    "final_zone": "fastly.net",
+    "naive_final_zone": "fastly.net",
+    "ptr": {}
+  },
+  "www.github.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "final": "github.com",
+            "ttl": 34
+          },
+          "google": {
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "final": "github.com",
+            "ttl": 60
+          },
+          "quad9": {
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "addresses": [
+              "20.27.177.113"
+            ],
+            "final": "github.com",
+            "ttl": 9
+          },
+          "kt": {
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "final": "github.com",
+            "ttl": 21
+          },
+          "cloudflare": {
+            "chain": [
+              "www.github.com",
+              "github.com"
+            ],
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "final": "github.com",
+            "ttl": 11
+          }
+        },
+        "ptr": {}
+      }
+    },
+    "chain": [
+      "www.github.com",
+      "github.com"
+    ],
+    "chain_length": 1,
+    "final": "github.com",
+    "final_zone": "github.com",
+    "naive_final_zone": "github.com",
+    "ptr": {}
+  },
+  "www.wikipedia.org": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "final": "dyna.wikimedia.org",
+            "ttl": 32
+          },
+          "google": {
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "final": "dyna.wikimedia.org",
+            "ttl": 46
+          },
+          "quad9": {
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "final": "dyna.wikimedia.org",
+            "ttl": 24
+          },
+          "kt": {
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "final": "dyna.wikimedia.org",
+            "ttl": 39
+          },
+          "cloudflare": {
+            "chain": [
+              "www.wikipedia.org",
+              "dyna.wikimedia.org"
+            ],
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "final": "dyna.wikimedia.org",
+            "ttl": 105
+          }
+        },
+        "ptr": {
+          "103.102.166.224": "text-lb.eqsin.wikimedia.org"
+        }
+      }
+    },
+    "chain": [
+      "www.wikipedia.org",
+      "dyna.wikimedia.org"
+    ],
+    "chain_length": 1,
+    "final": "dyna.wikimedia.org",
+    "final_zone": "wikimedia.org",
+    "naive_final_zone": "wikimedia.org",
+    "ptr": {
+      "103.102.166.224": "text-lb.eqsin.wikimedia.org"
+    }
+  },
+  "www.nytimes.com": {
+    "by_network": {
+      "home-wsl": {
+        "by_resolver": {
+          "system": {
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.49.164"
+            ],
+            "final": "nytimes.map.fastly.net",
+            "ttl": 60
+          },
+          "google": {
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "final": "nytimes.map.fastly.net",
+            "ttl": 51
+          },
+          "quad9": {
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "final": "nytimes.map.fastly.net",
+            "ttl": 36
+          },
+          "kt": {
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "addresses": [
+              "146.75.49.164"
+            ],
+            "final": "nytimes.map.fastly.net",
+            "ttl": 18
+          },
+          "cloudflare": {
+            "chain": [
+              "www.nytimes.com",
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "final": "nytimes.map.fastly.net",
+            "ttl": 60
+          }
+        },
+        "ptr": {}
+      }
+    },
+    "chain": [
+      "www.nytimes.com",
+      "www.prd.map.nytimes.com",
+      "www.prd.map.nytimes.xovr.nyt.net",
+      "nytimes.map.fastly.net"
+    ],
+    "chain_length": 3,
+    "final": "nytimes.map.fastly.net",
+    "final_zone": "fastly.net",
+    "naive_final_zone": "fastly.net",
+    "ptr": {}
+  }
+}

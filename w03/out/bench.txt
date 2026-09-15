@@ -1,0 +1,29 @@
+
+  1000 queries over 60 simulated minutes, 20 ms per upstream round trip
+
+  baseline   upstream   325   hit rate  67.5%   stale  266   sim time    6.5s
+  yours      upstream   275   hit rate  72.5%   stale    0   sim time    5.5s
+
+  0 stale, upstream +15% vs baseline  ->  good
+  For 'strong': in observation.md, work out the smallest number of
+  upstream queries any correct cache could make here, and why.
+
+
+
+  floor 275 upstream queries   hit rate 72.5%   sim time 5.5s
+
+  name                     ttl  queries  fetches   why                         
+  www.microsoft.com         20      322      118   asked more often than its TTL lives
+  www.cnn.com               30      189       76   asked more often than its TTL lives
+  www.netflix.com           60      109       37   asked more often than its TTL lives
+  www.spotify.com          120      100       23   asked more often than its TTL lives
+  www.github.com           300       63       11   
+  www.wikipedia.org        600       57        6   
+  www.korea.ac.kr         3600       46        1   TTL outlives the whole workload
+  www.stanford.edu        3600       45        1   TTL outlives the whole workload
+  dns.google             86400       35        1   TTL outlives the whole workload
+  a.root-servers.net     86400       34        1   TTL outlives the whole workload
+
+  No correct cache goes below 275: each fetch buys exactly ttl seconds of
+  validity, and these are the fewest such windows that cover every query.
+
