@@ -1,0 +1,40 @@
+{
+  "packets": 38,
+  "queries": 19,
+  "responses": 19,
+  "names": [
+    "www.adobe.com",
+    "www.stanford.edu"
+  ],
+  "example_pair": {
+    "q_frame": 1,
+    "r_frame": 2,
+    "txid": 29779,
+    "qname": "www.adobe.com",
+    "peer": "198.41.0.4"
+  },
+  "example_delegation": {
+    "frame": 2,
+    "size": 838,
+    "peer": "198.41.0.4",
+    "zone": "com",
+    "nscount": 13,
+    "arcount": 27
+  },
+  "example_answer": {
+    "frame": 10,
+    "size": 60,
+    "peer": "193.108.91.67",
+    "ancount": 1
+  },
+  "largest": {
+    "frame": 34,
+    "size": 854,
+    "peer": "198.41.0.4",
+    "zone": "com",
+    "nscount": 13,
+    "arcount": 27
+  },
+  "edns_note": "Measured, by asking `198.41.0.4` for `www.adobe.com` twice: **without EDNS0 the same response is 491 bytes with `TC=1`** and only 11 additional records \u2014 the server had to drop most of the glue and tell us to come back over TCP. Advertising a 1232-byte EDNS0 buffer gets 838 bytes, `TC=0`, and all 27 additional records in one UDP datagram. The 512-byte limit in RFC 1035 is why EDNS0 exists.",
+  "provenance": "SYNTHESIZED FRAMING \u2014 the DNS payload of every packet in this file is the exact byte string this machine sent to, or received from, the named server over UDP port 53, with the real transaction IDs, the real ephemeral source ports and the real timestamps. Wireshark, tshark and Npcap could not be installed on this machine, so there was no capture driver to record the frames. The Ethernet, IPv4 and UDP headers were therefore reconstructed by task2_steering.py: the MAC addresses are locally-administered placeholders (02:00:00:00:00:01/02) rather than this host's real MAC, and the IPv4 TTL is set to 64 in both directions and is NOT an observed value. Everything above the UDP header is genuine traffic; everything below it is reconstruction. See out/report.md section 7."
+}

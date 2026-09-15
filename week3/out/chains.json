@@ -1,0 +1,1558 @@
+{
+  "www.microsoft.com": {
+    "site": "www.microsoft.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.microsoft.com",
+            "www.microsoft.com-c-3.edgekey.net",
+            "e13678.dscb.akamaiedge.net"
+          ],
+          "length": 2,
+          "final_name": "e13678.dscb.akamaiedge.net",
+          "final_registrable": "akamaiedge.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "akamaiedge.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "cnames": [
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 4,
+            "rtt_ms": 6.5,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "cnames": [
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 20,
+            "rtt_ms": 65.1,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "23.41.38.100"
+            ],
+            "cnames": [
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 6,
+            "rtt_ms": 79.5,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "cnames": [
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 15,
+            "rtt_ms": 9.6,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "104.94.218.45"
+            ],
+            "cnames": [
+              "www.microsoft.com-c-3.edgekey.net",
+              "e13678.dscb.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 9,
+            "rtt_ms": 9.8,
+            "error": null
+          }
+        },
+        "ptr": {
+          "104.94.218.45": [
+            "a104-94-218-45.deploy.static.akamaitechnologies.com"
+          ],
+          "23.41.38.100": [
+            "a23-41-38-100.deploy.static.akamaitechnologies.com"
+          ]
+        },
+        "origin_ns": [
+          "ns1-39.azure-dns.com",
+          "ns2-39.azure-dns.net",
+          "ns3-39.azure-dns.org",
+          "ns4-39.azure-dns.info"
+        ],
+        "final_zone_ns": [
+          "a1-192.akamaiedge.net",
+          "a11-192.akamaiedge.net",
+          "a12-192.akamaiedge.net",
+          "a13-192.akamaiedge.net",
+          "a28-192.akamaiedge.net",
+          "a6-192.akamaiedge.net",
+          "la1.akamaiedge.net",
+          "la3.akamaiedge.net",
+          "lar2.akamaiedge.net",
+          "ns3-194.akamaiedge.net",
+          "ns5-194.akamaiedge.net",
+          "ns6-194.akamaiedge.net",
+          "ns7-194.akamaiedge.net"
+        ]
+      }
+    ]
+  },
+  "www.netflix.com": {
+    "site": "www.netflix.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.netflix.com",
+            "www.prod.ftl.netflix.com"
+          ],
+          "length": 1,
+          "final_name": "www.prod.ftl.netflix.com",
+          "final_registrable": "netflix.com",
+          "final_public_suffix": "com",
+          "final_naive_last2": "netflix.com",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "cnames": [
+              "www.prod.ftl.netflix.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 55,
+            "rtt_ms": 6.5,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "cnames": [
+              "www.prod.ftl.netflix.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 49,
+            "rtt_ms": 62.5,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "cnames": [
+              "www.prod.ftl.netflix.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 59,
+            "rtt_ms": 82.6,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "cnames": [
+              "www.prod.ftl.netflix.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 11,
+            "rtt_ms": 11.4,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "207.45.72.1",
+              "207.45.73.1"
+            ],
+            "cnames": [
+              "www.prod.ftl.netflix.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 33,
+            "rtt_ms": 9.5,
+            "error": null
+          }
+        },
+        "ptr": {
+          "207.45.72.1": [
+            "prod.ftl4.netflix.com"
+          ],
+          "207.45.73.1": [
+            "prod.ftl4.netflix.com"
+          ]
+        },
+        "origin_ns": [
+          "ns-1372.awsdns-43.org",
+          "ns-1984.awsdns-56.co.uk",
+          "ns-659.awsdns-18.net",
+          "ns-81.awsdns-10.com"
+        ],
+        "final_zone_ns": []
+      }
+    ]
+  },
+  "www.adobe.com": {
+    "site": "www.adobe.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.adobe.com",
+            "www.adobe.com.edgesuite.net",
+            "a1319.dscr.akamai.net"
+          ],
+          "length": 2,
+          "final_name": "a1319.dscr.akamai.net",
+          "final_registrable": "akamai.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "akamai.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "121.254.136.153",
+              "121.254.136.155",
+              "121.254.136.162",
+              "121.254.136.168",
+              "121.254.136.169",
+              "121.254.136.19",
+              "121.254.136.25",
+              "121.254.136.65",
+              "121.254.136.73"
+            ],
+            "cnames": [
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 10,
+            "rtt_ms": 7.5,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "121.254.136.152",
+              "121.254.136.154",
+              "121.254.136.155",
+              "121.254.136.163",
+              "121.254.136.18",
+              "121.254.136.25",
+              "121.254.136.65",
+              "121.254.136.66",
+              "121.254.136.67"
+            ],
+            "cnames": [
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 20,
+            "rtt_ms": 64.4,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "23.54.118.108",
+              "23.54.118.68"
+            ],
+            "cnames": [
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 20,
+            "rtt_ms": 86.3,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "23.35.218.147",
+              "23.35.218.148",
+              "23.35.218.154",
+              "23.35.218.156"
+            ],
+            "cnames": [
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 9,
+            "rtt_ms": 7.7,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "23.59.72.32",
+              "23.59.72.58",
+              "23.59.72.64"
+            ],
+            "cnames": [
+              "www.adobe.com.edgesuite.net",
+              "a1319.dscr.akamai.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 13,
+            "rtt_ms": 9.7,
+            "error": null
+          }
+        },
+        "ptr": {
+          "121.254.136.152": [],
+          "121.254.136.153": [],
+          "121.254.136.154": [],
+          "121.254.136.155": []
+        },
+        "origin_ns": [
+          "a1-217.akam.net",
+          "a10-64.akam.net",
+          "a13-65.akam.net",
+          "a26-66.akam.net",
+          "a28-67.akam.net",
+          "a7-64.akam.net"
+        ],
+        "final_zone_ns": [
+          "a1-193.akamaitech.net",
+          "a12-193.akamaitech.net",
+          "a22-193.akamaitech.net",
+          "a3-193.akamaitech.net",
+          "a5-193.akamaitech.net",
+          "a6-193.akamaitech.net",
+          "ns2-193.akamaitech.net",
+          "ns3-193.akamaitech.net",
+          "ns4-193.akamaitech.net",
+          "ns5-193.akamaitech.net",
+          "zb.akamaitech.net",
+          "zc.akamaitech.net",
+          "zd.akamaitech.net"
+        ]
+      }
+    ]
+  },
+  "www.cnn.com": {
+    "site": "www.cnn.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.cnn.com",
+            "cnn-tls.map.fastly.net"
+          ],
+          "length": 1,
+          "final_name": "cnn-tls.map.fastly.net",
+          "final_registrable": "fastly.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "fastly.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "146.75.51.5"
+            ],
+            "cnames": [
+              "cnn-tls.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 60,
+            "rtt_ms": 18.1,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "cnames": [
+              "cnn-tls.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 24,
+            "rtt_ms": 66.8,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "cnames": [
+              "cnn-tls.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 38,
+            "rtt_ms": 76.1,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "146.75.51.5"
+            ],
+            "cnames": [
+              "cnn-tls.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 3,
+            "rtt_ms": 6.7,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "151.101.131.5",
+              "151.101.195.5",
+              "151.101.3.5",
+              "151.101.67.5"
+            ],
+            "cnames": [
+              "cnn-tls.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 60,
+            "rtt_ms": 12.0,
+            "error": null
+          }
+        },
+        "ptr": {
+          "146.75.51.5": [],
+          "151.101.131.5": [],
+          "151.101.195.5": [],
+          "151.101.3.5": []
+        },
+        "origin_ns": [
+          "ns-1242.awsdns-27.org",
+          "ns-1652.awsdns-14.co.uk",
+          "ns-378.awsdns-47.com",
+          "ns-587.awsdns-09.net"
+        ],
+        "final_zone_ns": [
+          "ns1.fastly.net",
+          "ns2.fastly.net",
+          "ns3.fastly.net",
+          "ns4.fastly.net"
+        ]
+      }
+    ]
+  },
+  "www.apple.com": {
+    "site": "www.apple.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.apple.com",
+            "www-apple-com.v.aaplimg.com",
+            "www.apple.com.edgekey.net",
+            "e6858.dsce9.akamaiedge.net"
+          ],
+          "length": 3,
+          "final_name": "e6858.dsce9.akamaiedge.net",
+          "final_registrable": "akamaiedge.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "akamaiedge.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "104.94.216.37"
+            ],
+            "cnames": [
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 19,
+            "rtt_ms": 6.0,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "104.115.218.183"
+            ],
+            "cnames": [
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 17,
+            "rtt_ms": 62.3,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "23.41.37.53"
+            ],
+            "cnames": [
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 9,
+            "rtt_ms": 74.9,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "104.94.216.37"
+            ],
+            "cnames": [
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 14,
+            "rtt_ms": 4.6,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "23.49.205.28"
+            ],
+            "cnames": [
+              "www-apple-com.v.aaplimg.com",
+              "www.apple.com.edgekey.net",
+              "e6858.dsce9.akamaiedge.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 18,
+            "rtt_ms": 8.9,
+            "error": null
+          }
+        },
+        "ptr": {
+          "104.115.218.183": [
+            "a104-115-218-183.deploy.static.akamaitechnologies.com"
+          ],
+          "104.94.216.37": [
+            "a104-94-216-37.deploy.static.akamaitechnologies.com"
+          ],
+          "23.41.37.53": [
+            "a23-41-37-53.deploy.static.akamaitechnologies.com"
+          ],
+          "23.49.205.28": [
+            "a23-49-205-28.deploy.static.akamaitechnologies.com"
+          ]
+        },
+        "origin_ns": [
+          "a.ns.apple.com",
+          "b.ns.apple.com",
+          "c.ns.apple.com",
+          "d.ns.apple.com"
+        ],
+        "final_zone_ns": [
+          "a1-192.akamaiedge.net",
+          "a11-192.akamaiedge.net",
+          "a12-192.akamaiedge.net",
+          "a13-192.akamaiedge.net",
+          "a28-192.akamaiedge.net",
+          "a6-192.akamaiedge.net",
+          "la1.akamaiedge.net",
+          "la3.akamaiedge.net",
+          "lar2.akamaiedge.net",
+          "ns3-194.akamaiedge.net",
+          "ns5-194.akamaiedge.net",
+          "ns6-194.akamaiedge.net",
+          "ns7-194.akamaiedge.net"
+        ]
+      }
+    ]
+  },
+  "www.korea.ac.kr": {
+    "site": "www.korea.ac.kr",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.korea.ac.kr"
+          ],
+          "length": 0,
+          "final_name": "www.korea.ac.kr",
+          "final_registrable": "korea.ac.kr",
+          "final_public_suffix": "ac.kr",
+          "final_naive_last2": "ac.kr",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "cnames": [],
+            "rcode": "NOERROR",
+            "ttl_min": 3600,
+            "rtt_ms": 30.9,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "cnames": [],
+            "rcode": "NOERROR",
+            "ttl_min": 3024,
+            "rtt_ms": 64.9,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "cnames": [],
+            "rcode": "NOERROR",
+            "ttl_min": 1566,
+            "rtt_ms": 79.0,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "cnames": [],
+            "rcode": "NOERROR",
+            "ttl_min": 3316,
+            "rtt_ms": 8.8,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "163.152.6.10"
+            ],
+            "cnames": [],
+            "rcode": "NOERROR",
+            "ttl_min": 2509,
+            "rtt_ms": 8.7,
+            "error": null
+          }
+        },
+        "ptr": {
+          "163.152.6.10": [
+            "60.korea.ac.kr",
+            "sub.korea.ac.kr",
+            "www.korea.ac.kr"
+          ]
+        },
+        "origin_ns": [
+          "kucc.korea.ac.kr",
+          "kuccgx.korea.ac.kr"
+        ],
+        "final_zone_ns": []
+      }
+    ]
+  },
+  "www.stanford.edu": {
+    "site": "www.stanford.edu",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.stanford.edu",
+            "stanford.netlifyglobalcdn.com"
+          ],
+          "length": 1,
+          "final_name": "stanford.netlifyglobalcdn.com",
+          "final_registrable": "netlifyglobalcdn.com",
+          "final_public_suffix": "com",
+          "final_naive_last2": "netlifyglobalcdn.com",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "cnames": [
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 300,
+            "rtt_ms": 109.7,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "cnames": [
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 50,
+            "rtt_ms": 62.7,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "cnames": [
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 25,
+            "rtt_ms": 80.3,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "cnames": [
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 300,
+            "rtt_ms": 204.9,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "15.197.167.90",
+              "3.33.186.135"
+            ],
+            "cnames": [
+              "stanford.netlifyglobalcdn.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 157,
+            "rtt_ms": 7.7,
+            "error": null
+          }
+        },
+        "ptr": {
+          "15.197.167.90": [
+            "afa7f374f51cc8991.awsglobalaccelerator.com"
+          ],
+          "3.33.186.135": [
+            "afa7f374f51cc8991.awsglobalaccelerator.com"
+          ]
+        },
+        "origin_ns": [
+          "argus.stanford.edu",
+          "atalante.stanford.edu",
+          "avallone.stanford.edu",
+          "ns5.dnsmadeeasy.com",
+          "ns6.dnsmadeeasy.com",
+          "ns7.dnsmadeeasy.com"
+        ],
+        "final_zone_ns": [
+          "dns1.p02.nsone.net",
+          "dns2.p02.nsone.net",
+          "dns3.p02.nsone.net",
+          "dns4.p02.nsone.net",
+          "ns01.netlifydns.com",
+          "ns02.netlifydns.com",
+          "ns03.netlifydns.com",
+          "ns04.netlifydns.com"
+        ]
+      }
+    ]
+  },
+  "www.bbc.co.uk": {
+    "site": "www.bbc.co.uk",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.bbc.co.uk",
+            "www.bbc.co.uk.pri.bbc.co.uk",
+            "bbc.map.fastly.net"
+          ],
+          "length": 2,
+          "final_name": "bbc.map.fastly.net",
+          "final_registrable": "fastly.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "fastly.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "146.75.48.81"
+            ],
+            "cnames": [
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 60,
+            "rtt_ms": 267.0,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "cnames": [
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 39,
+            "rtt_ms": 65.2,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "cnames": [
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 47,
+            "rtt_ms": 80.2,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "146.75.48.81"
+            ],
+            "cnames": [
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 22,
+            "rtt_ms": 8.8,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "151.101.0.81",
+              "151.101.128.81",
+              "151.101.192.81",
+              "151.101.64.81"
+            ],
+            "cnames": [
+              "www.bbc.co.uk.pri.bbc.co.uk",
+              "bbc.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 5,
+            "rtt_ms": 11.5,
+            "error": null
+          }
+        },
+        "ptr": {
+          "146.75.48.81": [],
+          "151.101.0.81": [],
+          "151.101.128.81": [],
+          "151.101.192.81": []
+        },
+        "origin_ns": [
+          "ddns0.bbc.co.uk",
+          "ddns0.bbc.com",
+          "ddns1.bbc.co.uk",
+          "ddns1.bbc.com",
+          "dns0.bbc.co.uk",
+          "dns0.bbc.com",
+          "dns1.bbc.co.uk",
+          "dns1.bbc.com"
+        ],
+        "final_zone_ns": [
+          "ns1.fastly.net",
+          "ns2.fastly.net",
+          "ns3.fastly.net",
+          "ns4.fastly.net"
+        ]
+      }
+    ]
+  },
+  "www.spotify.com": {
+    "site": "www.spotify.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.spotify.com",
+            "atc.spotify.map.fastly.net"
+          ],
+          "length": 1,
+          "final_name": "atc.spotify.map.fastly.net",
+          "final_registrable": "fastly.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "fastly.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "146.75.51.42"
+            ],
+            "cnames": [
+              "atc.spotify.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 45,
+            "rtt_ms": 6.7,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "cnames": [
+              "atc.spotify.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 29,
+            "rtt_ms": 65.3,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "cnames": [
+              "atc.spotify.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 54,
+            "rtt_ms": 42.0,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "146.75.51.42"
+            ],
+            "cnames": [
+              "atc.spotify.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 16,
+            "rtt_ms": 8.5,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "151.101.131.42",
+              "151.101.195.42",
+              "151.101.3.42",
+              "151.101.67.42"
+            ],
+            "cnames": [
+              "atc.spotify.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 28,
+            "rtt_ms": 7.5,
+            "error": null
+          }
+        },
+        "ptr": {
+          "146.75.51.42": [],
+          "151.101.131.42": [],
+          "151.101.195.42": [],
+          "151.101.3.42": []
+        },
+        "origin_ns": [
+          "dns1.p07.nsone.net",
+          "ns-cloud-a1.googledomains.com",
+          "ns-cloud-a2.googledomains.com",
+          "ns-cloud-a3.googledomains.com",
+          "ns-cloud-a4.googledomains.com"
+        ],
+        "final_zone_ns": [
+          "ns1.fastly.net",
+          "ns2.fastly.net",
+          "ns3.fastly.net",
+          "ns4.fastly.net"
+        ]
+      }
+    ]
+  },
+  "www.github.com": {
+    "site": "www.github.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.github.com",
+            "github.com"
+          ],
+          "length": 1,
+          "final_name": "github.com",
+          "final_registrable": "github.com",
+          "final_public_suffix": "com",
+          "final_naive_last2": "github.com",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "cnames": [
+              "github.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 21,
+            "rtt_ms": 6.0,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "cnames": [
+              "github.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 60,
+            "rtt_ms": 68.7,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "20.27.177.113"
+            ],
+            "cnames": [
+              "github.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 8,
+            "rtt_ms": 38.0,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "cnames": [
+              "github.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 2,
+            "rtt_ms": 5.7,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "20.200.245.247"
+            ],
+            "cnames": [
+              "github.com"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 60,
+            "rtt_ms": 9.9,
+            "error": null
+          }
+        },
+        "ptr": {
+          "20.200.245.247": [],
+          "20.27.177.113": []
+        },
+        "origin_ns": [
+          "dns1.p08.nsone.net",
+          "dns2.p08.nsone.net",
+          "dns3.p08.nsone.net",
+          "dns4.p08.nsone.net",
+          "ns-1283.awsdns-32.org",
+          "ns-1707.awsdns-21.co.uk",
+          "ns-421.awsdns-52.com",
+          "ns-520.awsdns-01.net"
+        ],
+        "final_zone_ns": []
+      }
+    ]
+  },
+  "www.wikipedia.org": {
+    "site": "www.wikipedia.org",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.wikipedia.org",
+            "dyna.wikimedia.org"
+          ],
+          "length": 1,
+          "final_name": "dyna.wikimedia.org",
+          "final_registrable": "wikimedia.org",
+          "final_public_suffix": "org",
+          "final_naive_last2": "wikimedia.org",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "cnames": [
+              "dyna.wikimedia.org"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 168,
+            "rtt_ms": 5.4,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "cnames": [
+              "dyna.wikimedia.org"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 180,
+            "rtt_ms": 99.0,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "cnames": [
+              "dyna.wikimedia.org"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 1,
+            "rtt_ms": 76.7,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "cnames": [
+              "dyna.wikimedia.org"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 155,
+            "rtt_ms": 7.2,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "103.102.166.224"
+            ],
+            "cnames": [
+              "dyna.wikimedia.org"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 139,
+            "rtt_ms": 7.0,
+            "error": null
+          }
+        },
+        "ptr": {
+          "103.102.166.224": [
+            "text-lb.eqsin.wikimedia.org"
+          ]
+        },
+        "origin_ns": [
+          "ns0.wikimedia.org",
+          "ns1.wikimedia.org",
+          "ns2.wikimedia.org"
+        ],
+        "final_zone_ns": [
+          "ns0.wikimedia.org",
+          "ns1.wikimedia.org",
+          "ns2.wikimedia.org"
+        ]
+      }
+    ]
+  },
+  "www.nytimes.com": {
+    "site": "www.nytimes.com",
+    "runs": [
+      {
+        "network": "home-wifi",
+        "started_utc": "2026-09-15T06:05:17Z",
+        "vantage": {
+          "src_ip": "192.168.219.111",
+          "system_resolvers": [
+            "61.41.153.2",
+            "1.214.68.2"
+          ],
+          "system_resolver_fallback": false,
+          "note": ""
+        },
+        "chain": {
+          "followed_by": "8.8.8.8",
+          "method": "hop-by-hop",
+          "hops": [
+            "www.nytimes.com",
+            "www.prd.map.nytimes.com",
+            "www.prd.map.nytimes.xovr.nyt.net",
+            "nytimes.map.fastly.net"
+          ],
+          "length": 3,
+          "final_name": "nytimes.map.fastly.net",
+          "final_registrable": "fastly.net",
+          "final_public_suffix": "net",
+          "final_naive_last2": "fastly.net",
+          "loop_detected": false,
+          "error": null
+        },
+        "resolvers": {
+          "system": {
+            "server": "61.41.153.2",
+            "addresses": [
+              "146.75.49.164"
+            ],
+            "cnames": [
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 60,
+            "rtt_ms": 17.1,
+            "error": null
+          },
+          "google": {
+            "server": "8.8.8.8",
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "cnames": [
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 48,
+            "rtt_ms": 61.6,
+            "error": null
+          },
+          "quad9": {
+            "server": "9.9.9.9",
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "cnames": [
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 53,
+            "rtt_ms": 48.9,
+            "error": null
+          },
+          "kt": {
+            "server": "168.126.63.1",
+            "addresses": [
+              "146.75.49.164"
+            ],
+            "cnames": [
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 9,
+            "rtt_ms": 7.6,
+            "error": null
+          },
+          "cloudflare": {
+            "server": "1.1.1.1",
+            "addresses": [
+              "151.101.1.164",
+              "151.101.129.164",
+              "151.101.193.164",
+              "151.101.65.164"
+            ],
+            "cnames": [
+              "www.prd.map.nytimes.com",
+              "www.prd.map.nytimes.xovr.nyt.net",
+              "nytimes.map.fastly.net"
+            ],
+            "rcode": "NOERROR",
+            "ttl_min": 47,
+            "rtt_ms": 14.1,
+            "error": null
+          }
+        },
+        "ptr": {
+          "146.75.49.164": [],
+          "151.101.1.164": [],
+          "151.101.129.164": [],
+          "151.101.193.164": []
+        },
+        "origin_ns": [
+          "dns1.p06.nsone.net",
+          "dns2.p06.nsone.net",
+          "dns3.p06.nsone.net",
+          "dns4.p06.nsone.net",
+          "ns-1328.awsdns-38.org",
+          "ns-1652.awsdns-14.co.uk",
+          "ns-244.awsdns-30.com",
+          "ns-635.awsdns-15.net"
+        ],
+        "final_zone_ns": [
+          "ns1.fastly.net",
+          "ns2.fastly.net",
+          "ns3.fastly.net",
+          "ns4.fastly.net"
+        ]
+      }
+    ]
+  }
+}
