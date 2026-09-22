@@ -1,0 +1,5 @@
+# The Wireshark lab trace is the textbook authors' material, marked
+# "All Rights Reserved", and their site is the origin - so it is not
+# redistributed here. Restore it with:
+#     python task2_measure.py --fetch-trace
+tcp.pcapng

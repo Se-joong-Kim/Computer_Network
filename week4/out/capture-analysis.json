@@ -1,0 +1,47 @@
+{
+  "capture": "tcp.pcapng",
+  "flow": {
+    "client": "192.168.86.68:55639",
+    "server": "128.119.245.12:80",
+    "packets": 180,
+    "duration_s": 0.193,
+    "bytes_up": 153425,
+    "bytes_down": 777
+  },
+  "A2": {
+    "syn_frame": 1,
+    "synack_frame": 2,
+    "ack_frame": 3,
+    "handshake_ms": 22.505
+  },
+  "A3": {
+    "client_isn": 4236649187,
+    "server_isn": 1068969752,
+    "synack_acks": 4236649188
+  },
+  "A4": {
+    "client": {
+      "MSS": 1460,
+      "NOP": null,
+      "WindowScale": 6,
+      "SACKPermitted": true,
+      "EOL": null
+    },
+    "server": {
+      "MSS": 1460,
+      "SACKPermitted": true,
+      "NOP": null,
+      "WindowScale": 7
+    },
+    "client_window_raw": 65535,
+    "server_window_raw": 28960
+  },
+  "A5": {
+    "client_scale": 64,
+    "server_scale": 128,
+    "server_advertised_max": 194816,
+    "server_advertised_median": 160768,
+    "peak_bytes_inflight": 75296,
+    "peak_at_frame": 145
+  }
+}
