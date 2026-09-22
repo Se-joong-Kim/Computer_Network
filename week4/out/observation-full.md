@@ -222,7 +222,7 @@ from the campus rather than from my home ISP, which I verified before measuring 
 than assumed:
 
 ```
-  before:  public IP 58.78.179.154   (home ISP)        handshake 20.4 ms
+  before:  public IP 58.78.x.x       (home ISP, KR)    handshake 20.4 ms
   after:   public IP 163.152.233.19  (Korea University) handshake 66.2 ms   <- cold tunnel
 ```
 

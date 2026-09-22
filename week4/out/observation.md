@@ -43,7 +43,7 @@ loss to end it — and the 153 KB transfer ran out of data at 8.6 RTTs. `min(cwn
 
 **B3 · two vantage points**, one minute apart so conditions are shared. The second is my
 own laptop on the KU campus network, used as a Tailscale exit node — my traffic leaves
-from `163.152.233.19` instead of `58.78.179.154`, which I verified before measuring.
+from `163.152.233.19` instead of my home ISP address, which I verified before measuring.
 
 | label | median | min–max | spread | median handshake |
 |---|---:|---|---:|---:|
@@ -117,7 +117,7 @@ bottom of the pipe. Hence `β·W_peak ≥ BDP` → β ≥ 0.625, while average q
 - **B1's second vantage is an exit node, not a second physical link, and that matters.**
   Tethering was unavailable, so the second measurement routes through my own laptop on the
   KU campus network as a Tailscale exit node. The egress genuinely changes — verified
-  public IP `58.78.179.154` → `163.152.233.19` before measuring — but **the local Wi-Fi is
+  public IP `58.78.x.x` (home ISP) → `163.152.233.19` before measuring — but **the local Wi-Fi is
   shared by both measurements**. It is one local link with two egress paths, not two
   independent access networks, and the tunnel adds WireGuard encapsulation on top. Hence
   the decomposition in B5 rather than a bare attribution of the 48% to RTT. One record was

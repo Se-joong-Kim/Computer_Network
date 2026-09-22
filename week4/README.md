@@ -60,7 +60,7 @@ rights (`액세스가 거부되었습니다`, exit 5). Part B **is** my own link
 **2. B1's second vantage is an exit node, not a second physical link.** Phone tethering was
 not available, so the second measurement routes through my own laptop on the KU campus
 network, enabled as a Tailscale exit node. The egress genuinely changes — verified public
-IP `58.78.179.154` → `163.152.233.19` before measuring — but **the local Wi-Fi is shared by
+IP `58.78.x.x` (home ISP) → `163.152.233.19` before measuring — but **the local Wi-Fi is shared by
 both measurements**. It is one local link with two egress paths, not two independent access
 networks, and the tunnel adds WireGuard encapsulation. That is why B5 decomposes the result
 rather than attributing all of it to RTT.
