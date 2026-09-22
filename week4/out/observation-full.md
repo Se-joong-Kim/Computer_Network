@@ -216,22 +216,46 @@ also why the payload is readable at all; my own `--label` transfers go to
 
 ### B3 · the two networks
 
-> **Not yet complete — the second vantage point is pending.** Only one network is
-> available on this machine (Wi-Fi; the other interfaces are a Hyper-V virtual switch and
-> a Tailscale tunnel, neither of which is a separate path to the internet). Phone
-> tethering was not available, so this takes the fallback `task2.md` allows: *"measure at
-> two very different times of day, label them that way, and say what that weakens."*
-> The second run is one command — `python task2_measure.py --label "home-wifi <time>"` —
-> and this section plus B5 will be rewritten from the data once it exists.
+Phone tethering was not available, so the second vantage is my own laptop on the **KU
+campus network**, enabled as a Tailscale exit node. My traffic then leaves the internet
+from the campus rather than from my home ISP, which I verified before measuring rather
+than assumed:
+
+```
+  before:  public IP 58.78.179.154   (home ISP)        handshake 20.4 ms
+  after:   public IP 163.152.233.19  (Korea University) handshake 66.2 ms   <- cold tunnel
+```
+
+**What this is and is not.** The egress genuinely changes, and so does the path and the
+apparent source network. But **the local Wi-Fi link is shared by both measurements** — it
+is one local link with two egress paths, not two independent access networks — and the
+tunnel adds WireGuard encapsulation on top. That is why B5 below decomposes the result
+instead of attributing all of it to RTT.
+
+The two measured vantages are one minute apart, so local conditions are as close to
+identical as I can make them. A third row is included deliberately as a control: the same
+home network, 52 minutes earlier.
 
 | label | when | median | min–max | spread | median handshake |
 |---|---|---:|---|---:|---:|
-| `home-wifi afternoon` | 2026-09-22 13:11 | **110.96 Mbps** | 79.87 – 128.49 | **44%** | **8.2 ms** |
-| _(second time of day)_ | pending | | | | |
+| `home-wifi afternoon` | 2026-09-22 14:03 | **137.02 Mbps** | 97.43 – 147.61 | **37%** | **8.5 ms** |
+| `KU campus via Tailscale exit node` | 2026-09-22 14:02 | **71.21 Mbps** | 61.03 – 77.17 | **23%** | **22.5 ms** |
+| `home-wifi afternoon` *(control)* | 2026-09-22 13:11 | 110.96 Mbps | 79.87 – 128.49 | 44% | 8.2 ms |
 
-**B4 · explaining the spread — 44% across five runs on one unchanged network.** Nothing
+**One record was discarded before analysis, and it is worth saying why.** The first
+exit-node run reported handshakes of `0.0 ms` on two of its five transfers — physically
+impossible through a tunnel. Breaking out curl's full timing showed the cause: during cold
+tunnel setup `time_namelookup` and `time_connect` coincide, so `connect − namelookup`
+collapses to zero, and that run's first transfer also carried a 103 ms TTFB against a
+later median of 76 ms. I re-ran once the tunnel was warm (steady state: namelookup 5.5 ms,
+connect 27 ms, so a ~22 ms handshake) and removed the contaminated record from
+`throughput.json`. Its throughput figures were actually fine — median 70.97 against the
+clean run's 71.21 — but its handshake median was not, and B3 asks for exactly that.
+
+**B4 · explaining the spread — 37-44% across five runs on one unchanged network.** Nothing
 about the link changed between run 1 and run 5; they are a minute apart on the same Wi-Fi,
-to the same host. What varies:
+to the same host. Note the exit-node vantage is *tighter* (23%), not looser - the tunnel's
+own bottleneck dominates and masks the local variation. What varies:
 
 - **Slow start, every time.** Each run is a fresh TCP connection, so each one starts at a
   small `cwnd` and doubles. A 5 MB transfer at ~110 Mbps is over in ~0.36 s, which at an
@@ -251,9 +275,9 @@ This is the finding, not noise to be averaged away: **a single throughput number
 property of a link.** The median is 110.96 and the honest statement is "roughly 80–130
 Mbps depending on when you ask", which is why B2 asks for five runs.
 
-**B5 · handshake time and throughput are not independent.** Pending the second
-measurement for the comparison, but the mechanism is already visible in my own data and
-in the trace, and it is §3.7's:
+**B5 · handshake time and throughput are not independent.** Between the two contemporaneous
+vantages the handshake got **2.6× worse (8.5 → 22.5 ms)** and throughput fell **48%
+(137.02 → 71.21 Mbps)**. The mechanism is §3.7's:
 
 > Throughput during slow start is bounded by `cwnd / RTT`, and `cwnd` doubles once per
 > RTT. So the *time* to reach any given window is proportional to RTT, and the number of
@@ -270,6 +294,34 @@ RTT been 5 ms instead, the same 153 KB would have been delivered in the same 8.6
 but that is 43 ms instead of 194 ms, a 4.5× higher throughput **from an identical link
 capacity**. Capacity sets the ceiling; RTT sets how long you take to reach it, and for
 short transfers you never do.
+
+**How much of my 48% is actually RTT?** Not all of it, and claiming otherwise would be the
+easy mistake here — the exit node changed capacity too (WireGuard encapsulation, the campus
+PC's uplink, and a doubled traversal of the public internet). The two effects can be
+separated with the model above. Reaching the bandwidth-delay product from an initial window
+of 10 segments takes about `log₂(BDP/IW)` round trips:
+
+| | median | handshake | transfer of 5 MB | BDP | ramp | ramp time |
+|---|---:|---:|---:|---:|---:|---:|
+| home direct | 137.02 Mbps | 8.5 ms | 292 ms | 100 seg | 3.3 RTT | **28 ms** |
+| KU exit node | 71.21 Mbps | 22.5 ms | 562 ms | 137 seg | 3.8 RTT | **85 ms** |
+
+The transfer got 270 ms slower. **57 ms of that — about 21% — is the longer slow-start
+ramp, which is the pure RTT effect. The remaining 79% is capacity**, and I cannot claim it
+for §3.7. (The 79% is itself the reason this vantage is imperfect: B5 asks about two
+networks whose *raw capacity is the same*, and mine are not.)
+
+**The control row is what makes even the 21% believable.** The same home network measured
+52 minutes apart moved 110.96 → 137.02 Mbps, a 23% swing — while its handshake did not move
+at all (8.2 → 8.5 ms). So throughput varying on its own is *not* evidence of an RTT effect;
+within-network noise on this link is about 23%, and the cross-vantage difference is 48%,
+roughly twice that. The effect is real but it is not enormous compared with the noise, and
+a single pair of measurements without that control would not have been able to tell the
+difference.
+
+The trace remains the cleaner demonstration precisely because capacity is held fixed there:
+`cwnd` doubling ×2.0 per RTT, no loss, and the transfer ending at 8.6 RTTs with 60% of the
+offered receive window still unused.
 
 ---
 

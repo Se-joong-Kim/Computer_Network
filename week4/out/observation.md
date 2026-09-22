@@ -41,17 +41,38 @@ flight per RTT: 3 → 6 → 12 → 24 → 47 segments, **exactly ×2.0 each roun
 loss to end it — and the 153 KB transfer ran out of data at 8.6 RTTs. `min(cwnd, rwnd)` had
 `cwnd` as the smaller term for the entire connection.
 
-Measured link: **`home-wifi afternoon`, median 110.96 Mbps, 79.87–128.49 (44% spread),
-median handshake 8.2 ms.** The spread across five runs a minute apart on an unchanged link
-is itself the finding — each run is a fresh connection paying slow start again, over Wi-Fi
-that is a shared half-duplex radio, to an anycast POP whose load varies (one handshake hit
-27.9 ms against a median of 8.2). **B5's mechanism:** during slow start throughput is
-bounded by `cwnd/RTT` and `cwnd` doubles once per RTT, so the *time* to reach any window is
-proportional to RTT. The handshake is a direct measurement of that RTT, taken before any
-data moves — so a worse handshake does not merely delay the start, it stretches every
-subsequent doubling, and a short transfer can finish before the window ever opens. The
-trace shows it: at 22.5 ms RTT the same 153 KB takes 194 ms; at 5 ms it would take 43 ms
-from an identical link capacity.
+**B3 · two vantage points**, one minute apart so conditions are shared. The second is my
+own laptop on the KU campus network, used as a Tailscale exit node — my traffic leaves
+from `163.152.233.19` instead of `58.78.179.154`, which I verified before measuring.
+
+| label | median | min–max | spread | median handshake |
+|---|---:|---|---:|---:|
+| `home-wifi afternoon` (14:03) | **137.02 Mbps** | 97.43–147.61 | 37% | **8.5 ms** |
+| `KU campus via Tailscale exit node` (14:02) | **71.21 Mbps** | 61.03–77.17 | 23% | **22.5 ms** |
+| `home-wifi afternoon` (13:11, control) | 110.96 Mbps | 79.87–128.49 | 44% | 8.2 ms |
+
+**B4 · the spread.** 37–44% across five runs a minute apart on an unchanged link: each run
+is a fresh connection paying slow start again, over Wi-Fi that is a shared half-duplex
+radio, to an anycast POP whose load varies (one handshake hit 30.8 ms against a median of
+8.5). The third row is a deliberate control — the *same* network 52 minutes earlier —
+and it moved 23% while its handshake did not move at all (8.2 → 8.5 ms). So throughput
+varying is not by itself evidence of an RTT effect, which is what makes the second vantage
+necessary rather than decorative.
+
+**B5 · the mechanism, §3.7.** The handshake got 2.6× worse and throughput fell 48%. During
+slow start throughput is bounded by `cwnd/RTT` while `cwnd` doubles once per RTT, so the
+*time* to reach any given window is proportional to RTT — the handshake is a direct
+measurement of that RTT, taken before any data moves. A worse handshake therefore does not
+merely delay the start; it stretches every subsequent doubling.
+
+But I can only claim part of the 48%, because the exit node changed capacity too (WireGuard
+encapsulation, the campus uplink, and a doubled traversal). Decomposing the 270 ms of extra
+transfer time: reaching the bandwidth-delay product takes ≈`log₂(BDP/IW)` round trips —
+3.3 RTTs at home (100 segments of BDP) against 3.8 through the tunnel (137 segments) — so
+the ramp costs 28 ms against 85 ms. **That 57 ms is ~21% of the slowdown and is the pure
+RTT effect; the remaining 79% is capacity.** The trace is the clean version of the same
+mechanism with capacity held fixed: `cwnd` doubling ×2.0 per RTT and the transfer ending at
+8.6 RTTs with 60% of the offered window unused.
 
 ## Task 3 · beat the fixed window
 
@@ -93,10 +114,17 @@ bottom of the pipe. Hence `β·W_peak ≥ BDP` → β ≥ 0.625, while average q
   — it is an upload, the lab's `alice.txt` POST to `gaia.cs.umass.edu:80`; the User-Agent
   is Firefox 85 on macOS 10.15 while I am on Windows; and the client `192.168.86.68` is
   behind NAT on a subnet that is not mine (`192.168.219.x`).
-- **B1 is not yet satisfied — one FAIL in `test_tasks.py`.** This machine has one path to
-  the internet, and tethering was unavailable, so this takes the two-times-of-day fallback
-  and only the first run exists. The B3 comparison and half of B5 are therefore
-  single-vantage; the second run is one command.
+- **B1's second vantage is an exit node, not a second physical link, and that matters.**
+  Tethering was unavailable, so the second measurement routes through my own laptop on the
+  KU campus network as a Tailscale exit node. The egress genuinely changes — verified
+  public IP `58.78.179.154` → `163.152.233.19` before measuring — but **the local Wi-Fi is
+  shared by both measurements**. It is one local link with two egress paths, not two
+  independent access networks, and the tunnel adds WireGuard encapsulation on top. Hence
+  the decomposition in B5 rather than a bare attribution of the 48% to RTT. One record was
+  discarded before analysis: the first exit-node run reported two handshakes of 0.0 ms,
+  which is impossible through a tunnel and came from curl's timing during cold tunnel
+  setup; it was re-run once warm and the contaminated record removed from
+  `throughput.json`.
 - **A harness bug, reported not patched.** `verify()` builds its payload with
   `bytes(random.Random(seed).getrandbits(8) for _ in range(size))`, which constructs a new
   `Random(seed)` every iteration — so all 2000 bytes are identical (`0xed` for seed 246).

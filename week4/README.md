@@ -6,7 +6,7 @@ Lab for *Computer Networking: A Top-Down Approach* §3.4 (reliable data transfer
 | | Task | Built | Result |
 |---|---|---|---|
 | 1 | Reliable delivery over a bad channel | selective-repeat sender and receiver | **IDENTICAL** on every seed, incl. a 30%-loss stress case |
-| 2 | Measure your own link, twice | a throughput study + a TCP/pcapng dissector | median **111 Mbps**, handshake **8.2 ms** |
+| 2 | Measure your own link, twice | a throughput study + a TCP/pcapng dissector | home **137 Mbps** / 8.5 ms vs KU campus **71 Mbps** / 22.5 ms |
 | 3 | Beat the fixed window | slow start + AIMD with β = 0.70 | **strong** — 97% goodput, loss 37.4% → **0.5%**, queue 8.8 → **4.6** |
 
 ## Running it
@@ -38,7 +38,7 @@ python ../check.py w04                         # submission format
 | `out/capture-analysis.json` | machine-readable A2–A5 answers |
 | `out/bench.txt` | `python bench.py --yours` output |
 
-## Two things that are not finished
+## Two caveats on the measurements
 
 **1. `out/tcp.pcapng` is not in this repository.** Part A uses the official Wireshark Lab
 trace, which is the textbook authors' material and marked *All Rights Reserved*, so it is
@@ -57,19 +57,13 @@ Why path (B) rather than my own capture: Wireshark, `tshark` and Npcap could not
 installed on this machine, and Windows' built-in `pktmon` refuses without administrator
 rights (`액세스가 거부되었습니다`, exit 5). Part B **is** my own link and my own machine.
 
-**2. Requirement B1 is not yet satisfied — one FAIL in `test_tasks.py`.** It wants two or
-more labelled networks. This machine has exactly one path to the internet (the other
-interfaces are a Hyper-V virtual switch and a Tailscale tunnel), and phone tethering was
-not available, so this takes the fallback `task2.md` allows: two very different times of
-day. Only the first is measured. The second is one command:
-
-```bash
-python task2_measure.py --label "home-wifi late-evening"
-```
-
-`check.py w04` passes either way; it only checks the file exists. The real gap is in the
-write-up — B3 wants two medians to compare and B5 wants handshake time related to
-throughput *across* the two, and `out/observation.md` marks both sections pending.
+**2. B1's second vantage is an exit node, not a second physical link.** Phone tethering was
+not available, so the second measurement routes through my own laptop on the KU campus
+network, enabled as a Tailscale exit node. The egress genuinely changes — verified public
+IP `58.78.179.154` → `163.152.233.19` before measuring — but **the local Wi-Fi is shared by
+both measurements**. It is one local link with two egress paths, not two independent access
+networks, and the tunnel adds WireGuard encapsulation. That is why B5 decomposes the result
+rather than attributing all of it to RTT.
 
 ## The three findings worth reading
 
