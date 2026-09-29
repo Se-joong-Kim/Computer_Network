@@ -38,7 +38,7 @@ python test_tasks.py
 `--collect` still stores raw OS output and parses nothing, as `task2.md` asks. All parsing
 happens at `--report` time, so the report can always be regenerated from the evidence.
 
-## Three caveats
+## Two caveats
 
 **1. Part B (a second network) is not done yet — one FAIL in `test_tasks.py`.** It needs
 phone tethering and the phone is not with me this week. Two commands complete it; the
@@ -57,13 +57,6 @@ It is the authors' material, so `--fetch-trace` restores it rather than redistri
 > *Computer Networking: A Top-Down Approach*, 9th ed.
 > <https://gaia.cs.umass.edu/kurose_ross/>
 > Copyright 1996-2025 J.F. Kurose, K.W. Ross. All Rights Reserved.
-
-**3. Identifiers are masked in this copy, because the repository is public.** The public
-address is shown as `58.78.x.x` and the ISP's first router as `58.78.x.y` (it shares my
-`/27`, so it would pin the address); host name, MAC addresses, DHCPv6 DUID and tailnet name
-are also redacted. `report.md` was generated from the unmasked data before masking, so its
-NAT verdict stands; re-running `--report` from *this* copy reports it as undetermined,
-because the prefix comparison cannot be recomputed from masked addresses.
 
 ## Findings worth reading
 

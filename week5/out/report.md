@@ -23,7 +23,7 @@ File: `dhcp-wireshark-trace1-1.pcapng` from `wireshark-traces-9e.zip`, 329,664 b
 | Wireless LAN adapter Wi-Fi ← **default route** | `192.168.219.111` | `255.255.255.0` | `192.168.219.1` |
 | Ethernet adapter vEthernet (Default Switch) | `172.25.96.1` | `255.255.240.0` | — |
 
-**A1 = `192.168.219.111` / `255.255.255.0`** on `Wireless LAN adapter Wi-Fi`. It is the interface that holds the default gateway — the one the default route actually leaves by — which is what makes it *the* address rather than merely *an* address. (MAC `XX-XX-XX-XX-XX-XX`, DHCP server `192.168.219.1`.)
+**A1 = `192.168.219.111` / `255.255.255.0`** on `Wireless LAN adapter Wi-Fi`. It is the interface that holds the default gateway — the one the default route actually leaves by — which is what makes it *the* address rather than merely *an* address. (MAC `58-86-94-FE-83-AB`, DHCP server `192.168.219.1`.)
 
 ## 2. A2 · The subnet's range, by hand
 
@@ -49,21 +49,21 @@ The DHCP server is also `192.168.219.1` - the gateway and the DHCP server are on
 
 ## 4. A4 · The address the outside world saw
 
-**`58.78.x.x`** — public, as reported by `https://api.ipify.org`.
+**`58.78.179.154`** — public, as reported by `https://api.ipify.org`.
 
 ## 5. A5 · How many layers of NAT
 
 **1.**
 
-- A1 `192.168.219.111` is private (RFC 1918); A4 `58.78.x.x` is public - so at least one NAT
-- hop 2 `58.78.x.y` - the first router past my gateway - is already public, and shares a /27 with A4. The link between my router's WAN side and the ISP is publicly numbered, so my router's WAN address is public: the translation happens once, at hop 1
+- A1 `192.168.219.111` is private (RFC 1918); A4 `58.78.179.154` is public - so at least one NAT
+- hop 2 `58.78.179.129` - the first router past my gateway - is already public, and shares a /27 with A4. The link between my router's WAN side and the ISP is publicly numbered, so my router's WAN address is public: the translation happens once, at hop 1
 
 traceroute to `1.1.1.1`, first hops:
 
 | hop | address | class |
 |---:|---|---|
 | 1 | `192.168.219.1` | private (RFC 1918) |
-| 2 | `58.78.x.y` | public |
+| 2 | `58.78.179.129` | public |
 | 3 | `10.204.238.25` | private (RFC 1918) |
 | 4 | `100.87.3.5` | shared address space (RFC 6598) |
 | 5 | `100.87.1.5` | shared address space (RFC 6598) |

@@ -436,13 +436,13 @@ BLOCKS = [("10.0.0.0", 8, "private (RFC 1918)"),
 
 
 def is_masked(addr):
-    """The published copy of this data masks public addresses as 58.78.x.x."""
+    """An address masked by hand (58.78.x.x) cannot be parsed - say so rather than crash."""
     return bool(addr) and "x" in addr.lower()
 
 
 def classify(addr):
     if is_masked(addr):
-        return "public (masked in this copy)"
+        return "public (masked)"
     a = ip2int(addr)
     for base, plen, name in BLOCKS:
         m = (0xFFFFFFFF << (32 - plen)) & 0xFFFFFFFF
@@ -604,10 +604,9 @@ def nat_verdict(f):
         return 2, ev + [f"A1 is in 100.64.0.0/10 *and* is the address the default "
                         f"route egresses - carrier-grade NAT, two layers"]
     if is_masked(a4) or (len(hops) >= 2 and is_masked(hops[1])):
-        return None, ev + ["the public addresses are masked in this copy of the data, "
-                           "so the prefix comparison between hop 2 and A4 cannot be "
-                           "recomputed from it - the committed report.md was generated "
-                           "from the unmasked data"]
+        return None, ev + ["the public addresses in this data are masked, so the prefix "
+                           "comparison between hop 2 and A4 cannot be computed - "
+                           "restore the real addresses to recompute it"]
     if len(hops) >= 2 and hops[1] != "*" and classify(hops[1]) == "public":
         cp = common_prefix(hops[1], a4)
         if cp >= 24:
