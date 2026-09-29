@@ -1,0 +1,426 @@
+{
+  "capture": "dhcp.pcapng",
+  "bytes": 329664,
+  "sha256": "611169bdfdffc567d47eea2ff97d43538ec56cc516f92f2e4a468bb6f5f4419e",
+  "frames_total": 1018,
+  "dhcp_messages": 6,
+  "provenance": {
+    "archive": "wireshark-traces-9e.zip",
+    "member": "dhcp-wireshark-trace1-1.pcapng",
+    "source": "https://www-net.cs.umass.edu/wireshark-labs/wireshark-traces-9e.zip",
+    "attribution": "Wireshark lab trace files from J.F. Kurose and K.W. Ross,\nComputer Networking: A Top-Down Approach, 9th ed.\nhttps://gaia.cs.umass.edu/kurose_ross/\nCopyright 1996-2025 J.F. Kurose, K.W. Ross. All Rights Reserved.",
+    "note": "path (B): not my own capture - no Wireshark, tshark or Npcap available, and pktmon needs administrator rights (exit 5)"
+  },
+  "C1": {
+    "complete": true,
+    "xid": "0x56f415ed",
+    "messages": [
+      {
+        "frame": 5,
+        "at_s": 0.0,
+        "type": "DISCOVER",
+        "opt53": "DISCOVER",
+        "src": "0.0.0.0:68",
+        "dst": "255.255.255.255:67",
+        "eth_dst": "ff:ff:ff:ff:ff:ff",
+        "secs": 0,
+        "flags": "0x0000",
+        "broadcast_flag": false,
+        "ciaddr": "0.0.0.0",
+        "yiaddr": "0.0.0.0",
+        "l2_broadcast": true,
+        "l3_broadcast": true
+      },
+      {
+        "frame": 9,
+        "at_s": 1.589797,
+        "type": "DISCOVER",
+        "opt53": "DISCOVER",
+        "src": "0.0.0.0:68",
+        "dst": "255.255.255.255:67",
+        "eth_dst": "ff:ff:ff:ff:ff:ff",
+        "secs": 2,
+        "flags": "0x0000",
+        "broadcast_flag": false,
+        "ciaddr": "0.0.0.0",
+        "yiaddr": "0.0.0.0",
+        "l2_broadcast": true,
+        "l3_broadcast": true
+      },
+      {
+        "frame": 12,
+        "at_s": 3.266294,
+        "type": "OFFER",
+        "opt53": "OFFER",
+        "src": "192.168.86.1:67",
+        "dst": "192.168.86.65:68",
+        "eth_dst": "78:4f:43:98:d9:27",
+        "secs": 0,
+        "flags": "0x0000",
+        "broadcast_flag": false,
+        "ciaddr": "0.0.0.0",
+        "yiaddr": "192.168.86.65",
+        "l2_broadcast": false,
+        "l3_broadcast": false
+      },
+      {
+        "frame": 13,
+        "at_s": 3.266298,
+        "type": "OFFER",
+        "opt53": "OFFER",
+        "src": "192.168.86.1:67",
+        "dst": "192.168.86.65:68",
+        "eth_dst": "78:4f:43:98:d9:27",
+        "secs": 2,
+        "flags": "0x0000",
+        "broadcast_flag": false,
+        "ciaddr": "0.0.0.0",
+        "yiaddr": "192.168.86.65",
+        "l2_broadcast": false,
+        "l3_broadcast": false
+      },
+      {
+        "frame": 16,
+        "at_s": 4.26945,
+        "type": "REQUEST",
+        "opt53": "REQUEST",
+        "src": "0.0.0.0:68",
+        "dst": "255.255.255.255:67",
+        "eth_dst": "ff:ff:ff:ff:ff:ff",
+        "secs": 4,
+        "flags": "0x0000",
+        "broadcast_flag": false,
+        "ciaddr": "0.0.0.0",
+        "yiaddr": "0.0.0.0",
+        "l2_broadcast": true,
+        "l3_broadcast": true
+      },
+      {
+        "frame": 17,
+        "at_s": 4.28104,
+        "type": "ACK",
+        "opt53": "ACK",
+        "src": "192.168.86.1:67",
+        "dst": "192.168.86.65:68",
+        "eth_dst": "78:4f:43:98:d9:27",
+        "secs": 4,
+        "flags": "0x0000",
+        "broadcast_flag": false,
+        "ciaddr": "0.0.0.0",
+        "yiaddr": "192.168.86.65",
+        "l2_broadcast": false,
+        "l3_broadcast": false
+      }
+    ],
+    "dora_seconds": 4.28104,
+    "request_to_ack_ms": 11.59
+  },
+  "C2": {
+    "src": "0.0.0.0",
+    "dst": "255.255.255.255",
+    "sport": 68,
+    "dport": 67,
+    "eth_dst": "ff:ff:ff:ff:ff:ff",
+    "chaddr": "78:4f:43:98:d9:27",
+    "ciaddr": "0.0.0.0"
+  },
+  "C3": {
+    "lease_s": 86400,
+    "T1_s": 43200,
+    "T2_s": 75600,
+    "T1_fraction": 0.5,
+    "T2_fraction": 0.875,
+    "client_requested_lease_s": 7776000
+  },
+  "C4": {
+    "offer_unicast": true,
+    "ack_unicast": true,
+    "request_broadcast": true,
+    "broadcast_flag_set": false,
+    "yiaddr": "192.168.86.65",
+    "server_id": "192.168.86.1",
+    "requested_ip_in_request": "192.168.86.65",
+    "arp_probe_frames": [
+      18,
+      20,
+      21
+    ],
+    "arp_announce_frames": [
+      22,
+      23,
+      24
+    ],
+    "seconds_from_ack_to_first_claim": 0.972
+  },
+  "offered": {
+    "server_id": "192.168.86.1",
+    "subnet_mask": "255.255.255.0",
+    "broadcast_addr": "192.168.86.255",
+    "router": "192.168.86.1",
+    "domain_name": "lan",
+    "dns": "192.168.86.1"
+  },
+  "options_seen": {
+    "DISCOVER": [
+      {
+        "code": 53,
+        "name": "message_type",
+        "len": 1,
+        "value": "DISCOVER",
+        "raw": "01"
+      },
+      {
+        "code": 55,
+        "name": "param_req_list",
+        "len": 10,
+        "value": [
+          1,
+          121,
+          3,
+          6,
+          15,
+          119,
+          252,
+          95,
+          44,
+          46
+        ],
+        "raw": "017903060f77fc5f2c2e"
+      },
+      {
+        "code": 57,
+        "name": "max_dhcp_size",
+        "len": 2,
+        "value": 1500,
+        "raw": "05dc"
+      },
+      {
+        "code": 61,
+        "name": "client_id",
+        "len": 7,
+        "value": "type1:78:4f:43:98:d9:27",
+        "raw": "01784f4398d927"
+      },
+      {
+        "code": 51,
+        "name": "lease_time",
+        "len": 4,
+        "value": 7776000,
+        "raw": "0076a700"
+      },
+      {
+        "code": 12,
+        "name": "hostname",
+        "len": 13,
+        "value": "MacBook-Pro-6",
+        "raw": "4d6163426f6f6b2d50726f2d36"
+      }
+    ],
+    "OFFER": [
+      {
+        "code": 53,
+        "name": "message_type",
+        "len": 1,
+        "value": "OFFER",
+        "raw": "02"
+      },
+      {
+        "code": 54,
+        "name": "server_id",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      },
+      {
+        "code": 51,
+        "name": "lease_time",
+        "len": 4,
+        "value": 86400,
+        "raw": "00015180"
+      },
+      {
+        "code": 58,
+        "name": "renewal_T1",
+        "len": 4,
+        "value": 43200,
+        "raw": "0000a8c0"
+      },
+      {
+        "code": 59,
+        "name": "rebinding_T2",
+        "len": 4,
+        "value": 75600,
+        "raw": "00012750"
+      },
+      {
+        "code": 1,
+        "name": "subnet_mask",
+        "len": 4,
+        "value": "255.255.255.0",
+        "raw": "ffffff00"
+      },
+      {
+        "code": 28,
+        "name": "broadcast_addr",
+        "len": 4,
+        "value": "192.168.86.255",
+        "raw": "c0a856ff"
+      },
+      {
+        "code": 3,
+        "name": "router",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      },
+      {
+        "code": 15,
+        "name": "domain_name",
+        "len": 3,
+        "value": "lan",
+        "raw": "6c616e"
+      },
+      {
+        "code": 6,
+        "name": "dns",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      }
+    ],
+    "REQUEST": [
+      {
+        "code": 53,
+        "name": "message_type",
+        "len": 1,
+        "value": "REQUEST",
+        "raw": "03"
+      },
+      {
+        "code": 55,
+        "name": "param_req_list",
+        "len": 10,
+        "value": [
+          1,
+          121,
+          3,
+          6,
+          15,
+          119,
+          252,
+          95,
+          44,
+          46
+        ],
+        "raw": "017903060f77fc5f2c2e"
+      },
+      {
+        "code": 57,
+        "name": "max_dhcp_size",
+        "len": 2,
+        "value": 1500,
+        "raw": "05dc"
+      },
+      {
+        "code": 61,
+        "name": "client_id",
+        "len": 7,
+        "value": "type1:78:4f:43:98:d9:27",
+        "raw": "01784f4398d927"
+      },
+      {
+        "code": 50,
+        "name": "requested_ip",
+        "len": 4,
+        "value": "192.168.86.65",
+        "raw": "c0a85641"
+      },
+      {
+        "code": 54,
+        "name": "server_id",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      },
+      {
+        "code": 12,
+        "name": "hostname",
+        "len": 13,
+        "value": "MacBook-Pro-6",
+        "raw": "4d6163426f6f6b2d50726f2d36"
+      }
+    ],
+    "ACK": [
+      {
+        "code": 53,
+        "name": "message_type",
+        "len": 1,
+        "value": "ACK",
+        "raw": "05"
+      },
+      {
+        "code": 54,
+        "name": "server_id",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      },
+      {
+        "code": 51,
+        "name": "lease_time",
+        "len": 4,
+        "value": 86400,
+        "raw": "00015180"
+      },
+      {
+        "code": 58,
+        "name": "renewal_T1",
+        "len": 4,
+        "value": 43200,
+        "raw": "0000a8c0"
+      },
+      {
+        "code": 59,
+        "name": "rebinding_T2",
+        "len": 4,
+        "value": 75600,
+        "raw": "00012750"
+      },
+      {
+        "code": 1,
+        "name": "subnet_mask",
+        "len": 4,
+        "value": "255.255.255.0",
+        "raw": "ffffff00"
+      },
+      {
+        "code": 28,
+        "name": "broadcast_addr",
+        "len": 4,
+        "value": "192.168.86.255",
+        "raw": "c0a856ff"
+      },
+      {
+        "code": 3,
+        "name": "router",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      },
+      {
+        "code": 15,
+        "name": "domain_name",
+        "len": 3,
+        "value": "lan",
+        "raw": "6c616e"
+      },
+      {
+        "code": 6,
+        "name": "dns",
+        "len": 4,
+        "value": "192.168.86.1",
+        "raw": "c0a85601"
+      }
+    ]
+  }
+}
