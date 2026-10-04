@@ -20,9 +20,9 @@ OUT = os.path.join(HERE, "out")
 sys.path.insert(0, HERE)
 
 
-def sh(*cmd):
+def sh(*cmd, timeout=15):
     try:
-        return subprocess.run(cmd, capture_output=True, text=True, timeout=15).stdout
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout).stdout
     except Exception as e:
         return f"<failed: {e}>"
 
@@ -41,29 +41,44 @@ def local_facts():
     in the system locale, which here is Korean ("2026년 9월 28일 월요일 오후
     1:00:06"). The PowerShell object has the same information as
     locale-independent durations, so the two cross-check each other.
+
+    `dns64_probe` - the AAAA record for ipv4only.arpa (RFC 7050). That name
+    has only A records, so an ordinary resolver returns no AAAA; a resolver
+    doing DNS64 synthesises one inside the network's NAT64 prefix. It is the
+    one test a host can run that reveals an IPv6-only access network
+    translating to IPv4 somewhere upstream - which is a NAT the traceroute
+    cannot show, because the translated segment does not answer in IPv4.
     """
     osname = platform.system()
+    dns64 = sh("nslookup", "-type=AAAA", "ipv4only.arpa")
     if osname == "Darwin":
         return {"os": osname,
                 "ifconfig": sh("ifconfig"),
                 "route": sh("route", "-n", "get", "default"),
                 "dns": sh("scutil", "--dns"),
-                "traceroute": sh("traceroute", "-n", "-m", "10", "-w", "1", "1.1.1.1")}
+                "traceroute": sh("traceroute", "-n", "-m", "30", "-w", "1", "1.1.1.1", timeout=120),
+                "dns64_probe": dns64}
     if osname == "Linux":
         return {"os": osname,
                 "ip_addr": sh("ip", "addr"),
                 "ip_route": sh("ip", "route"),
                 "dns": sh("cat", "/etc/resolv.conf"),
-                "traceroute": sh("traceroute", "-n", "-m", "10", "-w", "1", "1.1.1.1")}
+                "traceroute": sh("traceroute", "-n", "-m", "30", "-w", "1", "1.1.1.1", timeout=120),
+                "dns64_probe": dns64}
     return {"os": osname,
             "ipconfig": sh("ipconfig", "/all"),
             "route": sh("route", "print"),
             "arp": sh("arp", "-a"),
-            "traceroute": sh("tracert", "-d", "-h", "10", "-w", "800", "1.1.1.1"),
+            "traceroute": sh("tracert", "-d", "-h", "30", "-w", "800", "1.1.1.1", timeout=120),
             "netipaddress": sh("powershell", "-NoProfile", "-Command",
                                "Get-NetIPAddress -AddressFamily IPv4 | "
                                "Select-Object InterfaceAlias,IPAddress,PrefixLength,"
-                               "PrefixOrigin,SuffixOrigin,ValidLifetime | ConvertTo-Json")}
+                               "PrefixOrigin,SuffixOrigin,ValidLifetime | ConvertTo-Json"),
+            "netipaddress6": sh("powershell", "-NoProfile", "-Command",
+                                "Get-NetIPAddress -AddressFamily IPv6 | "
+                                "Select-Object InterfaceAlias,IPAddress,PrefixLength,"
+                                "PrefixOrigin,SuffixOrigin | ConvertTo-Json"),
+            "dns64_probe": dns64}
 
 
 def public_address():
@@ -72,9 +87,25 @@ def public_address():
     return out.strip() or None
 
 
+def public_address_v6():
+    """The same question over IPv6. Empty on a network with no IPv6."""
+    out = sh("curl", "-s", "-6", "--max-time", "10", "https://api64.ipify.org")
+    return out.strip() or None
+
+
 def collect(label):
+    import time
     os.makedirs(OUT, exist_ok=True)
     record = {"label": label, "local": local_facts(), "public": public_address()}
+    record["public_v6"] = public_address_v6()
+    # Asking once tells you the public address. Asking several times tells you
+    # whether it is a property of your router or of a pool somebody else runs:
+    # a NAT you own maps you to its one WAN address every time.
+    samples = []
+    for _ in range(6):
+        samples.append(public_address())
+        time.sleep(1)
+    record["public_samples"] = samples
     path = os.path.join(OUT, "addresses.json")
     all_records = json.load(open(path)) if os.path.exists(path) else []
     all_records.append(record)
@@ -544,12 +575,37 @@ def parse_netipaddress(text):
     return rows
 
 
+def _is_v4(s):
+    return bool(s) and re.fullmatch(r"\d{1,3}(?:\.\d{1,3}){3}", s.strip()) is not None
+
+
+def parse_dns64(text):
+    """AAAA records in `nslookup -type=AAAA ipv4only.arpa` output.
+
+    None if the probe was not recorded; [] if it ran and found none. Only the
+    part after "Name:" is read - before it, nslookup prints the server's own
+    address, which may itself be IPv6.
+    """
+    if text is None:
+        return None
+    i = text.find("Name:")
+    if i < 0:
+        return []
+    return re.findall(r"[0-9A-Fa-f]*:[0-9A-Fa-f:]*:[0-9A-Fa-f]+", text[i:])
+
+
 def facts(record):
     """One --collect record, read. Windows is parsed; macOS/Linux fall back to
     the raw output so that the report still generates for anyone else."""
     L = record.get("local", {})
     out = {"label": record.get("label"), "public": record.get("public"),
-           "os": L.get("os"), "hops": parse_tracert(L.get("traceroute"))}
+           "os": L.get("os"), "hops": parse_tracert(L.get("traceroute")),
+           # Fields added after the first collection: absent means "not
+           # recorded on that network", which is different from "none".
+           "public_v6": record.get("public_v6"),
+           "public_v6_recorded": "public_v6" in record,
+           "public_samples": record.get("public_samples"),
+           "dns64": parse_dns64(L.get("dns64_probe"))}
     if L.get("os") != "Windows":
         out["raw_only"] = True
         return out
@@ -557,9 +613,10 @@ def facts(record):
     adapters = parse_ipconfig(L.get("ipconfig"))
     # A1 is the interface the default route leaves by - the one that has a
     # default gateway. Not "the first adapter", and not "the one called Wi-Fi".
+    # The gateway list can open with an IPv6 link-local next hop, so look for
+    # an IPv4 one specifically.
     primary = next((a for a in adapters
-                    if any(g.strip() and g[0].isdigit()
-                           for g in a["fields"].get("Default Gateway", []))), None)
+                    if any(_is_v4(g) for g in a["fields"].get("Default Gateway", []))), None)
     out["adapters"] = []
     for a in adapters:
         f = a["fields"]
@@ -568,14 +625,17 @@ def facts(record):
             out["adapters"].append({"name": a["adapter"], "ipv4": ipv4,
                                     "mask": (f.get("Subnet Mask") or [None])[0],
                                     "gateway": next((g for g in f.get("Default Gateway", [])
-                                                     if g and g[0].isdigit()), None)})
+                                                     if _is_v4(g)), None)})
     if primary:
         f = primary["fields"]
+        v6 = f.get("IPv6 Address", []) + f.get("Temporary IPv6 Address", [])
+        out["ipv6_global"] = [a.split("%")[0] for a in v6
+                              if a and a[0] in "23" and ":" in a]     # 2000::/3
         out.update({
             "adapter": primary["adapter"],
             "ipv4": next(v for v in f.get("IPv4 Address", []) if v),
             "mask": f.get("Subnet Mask", [None])[0],
-            "gateway": next(g for g in f["Default Gateway"] if g and g[0].isdigit()),
+            "gateway": next(g for g in f["Default Gateway"] if _is_v4(g)),
             "dhcp_server": (f.get("DHCP Server") or [None])[0],
             "dns": [d for d in f.get("DNS Servers", []) if d],
             "mac": (f.get("Physical Address") or [None])[0],
@@ -616,7 +676,46 @@ def nat_verdict(f):
                       f"router's WAN address is public: the translation happens once, "
                       f"at hop 1")
             return 1, ev
+    # NAT64. When the access network is IPv6-only, IPv4 leaves through a
+    # translator in the carrier, and traceroute cannot see it - the segment in
+    # between does not answer in IPv4. DNS64 is the host-side tell (RFC 7050).
+    if f.get("dns64"):
+        ev.append(f"the resolver synthesises AAAA records for `ipv4only.arpa`, a name that has "
+                  f"only A records (`{'`, `'.join(f['dns64'])}`). That is DNS64 (RFC 7050): "
+                  f"this access network reaches IPv4 through a NAT64 in the carrier, so after "
+                  f"my gateway translates me once, the carrier translates me again")
+        samples = [s for s in (f.get("public_samples") or []) if s]
+        distinct = sorted(set(samples))
+        if len(distinct) > 1:
+            ev.append(f"{len(samples)} requests a second apart left from {len(distinct)} "
+                      f"different public addresses (`{'`, `'.join(distinct)}`). A router I "
+                      f"own maps me to its one WAN address every time; this is a pool that "
+                      f"somebody else runs")
+        first_pub = next(((i, h) for i, h in enumerate(hops, 1)
+                          if h != "*" and classify(h) == "public"), None)
+        if first_pub:
+            cp = common_prefix(first_pub[1], a4)
+            ev.append(f"traceroute stays non-public for {first_pub[0] - 2} hops past my gateway, "
+                      f"and the first public hop `{first_pub[1]}` (hop {first_pub[0]}) shares "
+                      f"{'no prefix' if cp < 8 else f'only a /{cp}'} with A4 - unlike a router "
+                      f"whose WAN side is publicly numbered, as at home")
+        silent = [i for i, h in enumerate(hops, 1) if h == "*"]
+        if silent:
+            ev.append(f"hops {silent[0]}-{silent[-1]} never answer in IPv4, which is what an "
+                      f"IPv6 segment between the gateway's translator and the carrier's NAT64 "
+                      f"looks like from here")
+        return 2, ev
     return None, ev + ["inconclusive from traceroute alone"]
+
+
+def nat_v6(f):
+    """IPv6 NAT layers: 0 if the outside sees one of my own addresses."""
+    mine = f.get("ipv6_global") or []
+    if not f.get("public_v6_recorded"):
+        return "not recorded" if mine else "no IPv6"
+    if not mine:
+        return "no IPv6"
+    return "0" if f.get("public_v6") in mine else "translated"
 
 
 # ------------------------------------------------------------------ the report
@@ -810,28 +909,109 @@ def report():
           "> ```\n> python task2_myaddr.py --collect \"phone tethering\"\n"
           "> python task2_myaddr.py --report\n> ```\n")
     else:
+        a, b = usable[0], usable[1]
+
+        def cell(x, key):
+            return f"`{x[key]}`" if x.get(key) else "—"
+
+        def samples_cell(x):
+            s = x.get("public_samples")
+            if s is None:
+                return "not recorded"
+            d = sorted({v for v in s if v})
+            return (f"{len(s)} samples, {len(d)} distinct"
+                    + (f": `{'`, `'.join(d)}`" if len(d) > 1 else ""))
+
+        def v6_mine(x):
+            m = x.get("ipv6_global") or []
+            return "<br>".join(f"`{v}`" for v in m) if m else "none — link-local only"
+
+        def v6_seen(x):
+            if not x.get("public_v6_recorded"):
+                return "not recorded"
+            return f"`{x['public_v6']}`" if x.get("public_v6") else "none"
+
+        def dns64_cell(x):
+            d = x.get("dns64")
+            if d is None:
+                return "not probed"
+            return f"`{'`, `'.join(d)}`" if d else "none — no DNS64"
+
+        def lease_cell(x):
+            s = x.get("lease_s")
+            return f"{s:,} s (≈{round(s / 3600, 1):g} h)" if s else "—"
+
+        rows = [("private address (A1)", lambda x: cell(x, "ipv4")),
+                ("mask", lambda x: cell(x, "mask")),
+                ("gateway", lambda x: cell(x, "gateway")),
+                ("DHCP server", lambda x: cell(x, "dhcp_server")),
+                ("DHCP lease", lease_cell),
+                ("public IPv4 (A4)", lambda x: cell(x, "public")),
+                ("public IPv4, asked repeatedly", samples_cell),
+                ("my global IPv6", v6_mine),
+                ("IPv6 the outside saw", v6_seen),
+                ("AAAA for `ipv4only.arpa`", dns64_cell),
+                ("**IPv4 NAT layers**", lambda x: f"**{nat_verdict(x)[0]}**"),
+                ("**IPv6 NAT layers**", lambda x: f"**{nat_v6(x)}**")]
         w("| | " + " | ".join(f"`{x['label']}`" for x in usable) + " |")
         w("|---|" + "---|" * len(usable))
-        for key, name in (("ipv4", "private address"), ("mask", "mask"),
-                          ("gateway", "gateway"), ("dhcp_server", "DHCP server"),
-                          ("public", "public address")):
-            w(f"| {name} | " + " | ".join(f"`{x.get(key)}`" for x in usable) + " |")
-        w("| NAT layers | " + " | ".join(str(nat_verdict(x)[0]) for x in usable) + " |")
-        a, b = usable[0], usable[1]
+        for name, fn in rows:
+            w(f"| {name} | " + " | ".join(fn(x) for x in usable) + " |")
+        w(f"\n\"not recorded\" means the field did not exist yet when `{a['label']}` was "
+          f"collected; it is not the same as \"none\".\n")
+
+        cnt, ev = nat_verdict(b)
+        w(f"### How many NATs on `{b['label']}`: {cnt}\n")
+        for e in ev:
+            w(f"- {e}")
+        w("")
+        w("| hop | address | class |")
+        w("|---:|---|---|")
+        for i, h in enumerate(b["hops"], 1):
+            w(f"| {i} | `{h}` | {classify(h) if h != '*' else 'no reply'} |")
+
+        def block(addr):
+            for base, plen, name in BLOCKS:
+                m = (0xFFFFFFFF << (32 - plen)) & 0xFFFFFFFF
+                if ip2int(addr) & m == ip2int(base) & m:
+                    return f"{base}/{plen}"
+            return "public space"
+
+        # B3, written from the evidence above.
         pub_changed = a["public"] != b["public"]
         priv_changed = a["ipv4"] != b["ipv4"]
-        w(f"\n**Did the public address change? {'Yes' if pub_changed else 'No'}.** "
-          + ("The public address belongs to whichever NAT is outermost, so it changes "
-             "with the provider that owns that NAT — a different network is a different "
-             "owner of that address." if pub_changed else
-             "The same outermost NAT answered both times."))
-        w(f"\n**Did the private one? {'Yes' if priv_changed else 'No'}.** "
-          + ("The private address is handed out by whichever DHCP server sits on the "
-             "local link, from that server's own pool. A different local network is a "
-             "different server and usually a different RFC 1918 block, so the address "
-             "changes even though nothing about my machine did." if priv_changed else
-             "The same local DHCP server handed out the same address - it remembers the "
-             "client by its hardware address."))
+        w(f"\n### B3 · Did the public address change? {'Yes' if pub_changed else 'No'}.\n")
+        if pub_changed:
+            cp = common_prefix(a["public"], b["public"])
+            bd = sorted({s for s in (b.get("public_samples") or []) if s})
+            w(f"The public address belongs to whoever runs the outermost NAT. On "
+              f"`{a['label']}` that is my own router, and `{a['public']}` is its WAN address. "
+              f"On `{b['label']}` it is the carrier: `{b['public']}` shares "
+              f"{'no prefix' if cp < 8 else f'only a /{cp}'} with the first — a different "
+              f"provider's address space — "
+              + (f"and it was not even stable within one session: {len(bd)} different "
+                 f"public addresses answered for the same machine seconds apart. "
+                 if len(bd) > 1 else "")
+              + "A public address is not a property of my machine, or even of my "
+              "connection; it is a property of whoever does the last translation.\n")
+        w(f"### B3 · Did the private one? {'Yes' if priv_changed else 'No'}.\n")
+        if priv_changed:
+            w(f"`{a['ipv4']}` was lent by `{a.get('dhcp_server')}` from `{block(a['ipv4'])}`; "
+              f"`{b['ipv4']}` was lent by `{b.get('dhcp_server')}` from `{block(b['ipv4'])}`. "
+              f"A private address is handed out by whichever DHCP server sits on the local "
+              f"link, from that server's own pool — a different link is a different server, "
+              f"so the address changes although nothing about my machine did."
+              + (f" The mask, `{a['mask']}`, happens to be the same on both."
+                 if a.get("mask") == b.get("mask") else "") + "\n")
+        v6a, v6b = nat_v6(a), nat_v6(b)
+        if v6a == "no IPv6" and v6b == "0":
+            w(f"**And one thing exists only on `{b['label']}`: global IPv6, and the outside "
+              f"saw `{b['public_v6']}` — exactly an address my machine holds.** (It holds "
+              f"{len(b['ipv6_global'])}; outgoing connections use the temporary one, RFC 4941, "
+              f"so by default a server never sees the stable one.) IPv6 crosses no NAT at all on "
+              f"the same connection where IPv4 crosses "
+              f"two — the address shortage NAT was invented for does not exist in IPv6, "
+              f"and here that is visible side by side.\n")
         w("")
 
     # ------------------------------------------------------------ §7-11 Part C
@@ -949,6 +1129,18 @@ def report():
       "NAT; the router's own status page would close the question.")
     if len({x["label"] for x in F}) < 2:
         w("- **B1–B3 are not yet satisfied.** One network only. See §6.")
+    late = [x["label"] for x in F if not x.get("public_v6_recorded")]
+    if late and len(late) < len(F):
+        w(f"- **{', '.join(f'`{l}`' for l in late)} was collected before the IPv6, DNS64 "
+          f"and repeated-sample fields existed**, and that network was out of range by the "
+          f"time they did. Its IPv6 state is read from its own `ipconfig` (link-local only); "
+          f"its DNS64 and address pool were not probed — moot for a network with no IPv6 "
+          f"and a NAT count already settled by traceroute.")
+    if any(x.get("dns64") for x in F):
+        w("- **The NAT64 conclusion is inferred from the host side.** DNS64 synthesis, the "
+          "changing public address and the silent traceroute segment all point the same way, "
+          "but the phone's own mobile-network address was not read off the phone; its status "
+          "screen (no IPv4 on the mobile connection) would confirm it directly.")
     w("")
 
     rp = os.path.join(OUT, "report.md")

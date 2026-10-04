@@ -6,7 +6,7 @@ DHCP) and §4.3.3 (NAT, forwarding).
 | | Task | Built | Result |
 |---|---|---|---|
 | 1 | Subnets and longest-prefix match | a CIDR parser and forwarding table from 32-bit integers, no `ipaddress` | **10/10** |
-| 2 | Where exactly am I? | address study, NAT count, and a DHCP dissector | **one NAT**, proven from traceroute · DORA fully decoded |
+| 2 | Where exactly am I? | address study on two networks, NAT count, and a DHCP dissector | home **1 NAT** · tethering **2 NATs** (NAT64) · IPv6 **0** · DORA fully decoded |
 | 3 | Make the lookup fast | one hash table per prefix length, longest first | **strong** — 1782× in `bench.txt`, 0 wrong, 0.3 MB |
 
 ## Running it
@@ -38,18 +38,9 @@ python test_tasks.py
 `--collect` still stores raw OS output and parses nothing, as `task2.md` asks. All parsing
 happens at `--report` time, so the report can always be regenerated from the evidence.
 
-## Two caveats
+## One caveat
 
-**1. Part B (a second network) is not done yet — one FAIL in `test_tasks.py`.** It needs
-phone tethering and the phone is not with me this week. Two commands complete it; the
-comparison in `report.md` §6 is generated automatically:
-
-```bash
-python task2_myaddr.py --collect "phone tethering"
-python task2_myaddr.py --report
-```
-
-**2. `out/dhcp.pcapng` is not in this repository.** Part C uses the official DHCP trace
+**`out/dhcp.pcapng` is not in this repository.** Part C uses the official DHCP trace
 (path B — no Wireshark, tshark or Npcap here, and `pktmon` needs administrator rights).
 It is the authors' material, so `--fetch-trace` restores it rather than redistributing it.
 
@@ -59,6 +50,8 @@ It is the authors' material, so `--fetch-trace` restores it rather than redistri
 > Copyright 1996-2025 J.F. Kurose, K.W. Ross. All Rights Reserved.
 
 ## Findings worth reading
+
+**The second network crosses two NATs, and traceroute alone could not show it.** On phone tethering (SK Telecom) the resolver synthesises AAAA records for `ipv4only.arpa` — `64:ff9b::c000:aa`, the RFC 6052 NAT64 prefix — so IPv4 is translated by the phone and again by the carrier's NAT64. Two more signs: the public IPv4 changed between requests a second apart (`211.234.201.129`, `211.234.201.66`), which a router you own never does, and hops 2–5 never answer in IPv4. On the same connection IPv6 crosses no NAT at all: the outside saw exactly the address the machine holds.
 
 **The brief's CGNAT rule fails twice on one machine.** `task2.md` says a `100.64.x` address
 means carrier-grade NAT and two layers. Here traceroute hops 4–8 are in `100.64/10` — but

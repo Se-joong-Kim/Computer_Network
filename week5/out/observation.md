@@ -13,12 +13,12 @@ settles that earlier, by administrative distance or metric.
 
 ## Task 2 · where exactly am I
 
-One NAT: A1 `192.168.219.111/24` is private, A4 `58.78.179.154` public, and traceroute hop 2
-(`58.78.179.129`) is already public and shares a /27 with A4, so translation happens once, at hop 1.
-"100.64.x means CGNAT" fails twice here: hops 4–8 are ISP backbone after my packets are already
-public, and Tailscale's `100.111.74.12` is a /32 with no gateway that the default route never uses.
-The Discover (official trace, path B) comes from `0.0.0.0` because the client has no address, which
-forces a broadcast destination. Second network pending: phone tethering on Friday (B1–B3).
+Home: **one** NAT — A1 `192.168.219.111` private, A4 `58.78.179.154` public, and hop 2 already public
+and in A4's /27, so my router is the only translation. Tethering: **two** NATs — the phone, then SK
+Telecom's NAT64: AAAA for `ipv4only.arpa` returns `64:ff9b::c000:aa`, and the public IPv4 changed
+between requests a second apart (`211.234.201.129`, `.66`). Private and public addresses both
+changed — each is lent by that link's DHCP server or outermost NAT; only tethering had IPv6, NAT-free.
+The Discover (official trace) is from `0.0.0.0`; any other source would claim an unowned address.
 
 ## Task 3 · make the lookup fast
 
