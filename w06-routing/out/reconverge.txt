@@ -1,0 +1,42 @@
+# Week 6 Task 2 - measured OSPF reconvergence (FRR 9.1.0, three routers)
+# measured 2026-10-06 13:45:52 by task2_ospf.py
+
+OSPF timers on every interface: Hello 10 s, Dead 40 s, Wait 40 s (FRR defaults; frr.conf does not set them).
+Each router polled continuously in its own thread; 'converged' = first moment its table reached the state it then kept.
+Times are seconds from just before the trigger command; resolution is one poll (see interval per router).
+Only the table's structure is compared - prefix, metric, next hops - never the uptime column.
+
+event                                                          router  first change  converged   poll
+-----------------------------------------------------------------------------------------------------
+interface down - r1 eth1 (net_b) set down                      r1            0.32 s     0.32 s  0.17s
+                                                               r2            0.32 s     0.32 s  0.17s
+                                                               r3            0.33 s     0.33 s  0.18s
+
+interface up - r1 eth1 (net_b) set up                          r1            0.32 s     7.39 s  0.17s
+                                                               r2           12.46 s    12.46 s  0.17s
+                                                               r3            0.33 s     0.33 s  0.17s
+
+silent cut - r1's net_b link detached from br-67231e6eab69 on the host; both interfaces stay UP r1           35.29 s    38.15 s  0.17s
+                                                               r2           35.41 s    35.41 s  0.18s
+                                                               r3                 -  unchanged  0.17s
+
+silent repair - re-attached to br-67231e6eab69                 r1            7.56 s     7.56 s  0.18s
+                                                               r2           14.67 s    14.67 s  0.18s
+                                                               r3                 -  unchanged  0.18s
+
+cost change - r1 eth0 (net_a) cost 10 -> 100, no link goes down r1            0.39 s     0.39 s  0.17s
+                                                               r2            0.41 s     0.41 s  0.17s
+                                                               r3                 -  unchanged  0.18s
+
+cost restore - r1 eth0 (net_a) cost 100 -> 10                  r1            0.36 s     0.36 s  0.18s
+                                                               r2            0.36 s     0.36 s  0.18s
+                                                               r3                 -  unchanged  0.18s
+
+Why scenario.sh's own timing cannot be trusted:
+  two snapshots of r1's 'show ip route ospf' 2.2 s apart, with nothing changed (structure identical: True),
+  differ in 4 line(s) - only the uptime counter:
+    O   172.18.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:01:08
+    O   172.18.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:01:10
+    O   172.19.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:01:08
+    O   172.19.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:01:10
+  scenario.sh compares exactly that text, so it reports 'reconverged' about a second after any cut.

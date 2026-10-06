@@ -1,0 +1,317 @@
+{
+  "networks": {
+    "net_a": "172.19.0.0/16",
+    "net_b": "172.18.0.0/16",
+    "net_c": "172.20.0.0/16"
+  },
+  "r1_net_b": "eth1",
+  "r1_net_a": "eth0",
+  "host_veth": "veth767a844",
+  "bridge": "br-67231e6eab69",
+  "timers": [
+    "10",
+    "40",
+    "40"
+  ],
+  "before": {
+    "r1": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0",
+    "r2": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+    "r3": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1"
+  },
+  "uptime_only_diff": [
+    [
+      "O   172.18.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:01:08",
+      "O   172.18.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:01:10"
+    ],
+    [
+      "O   172.19.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:01:08",
+      "O   172.19.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:01:10"
+    ],
+    [
+      "O>* 172.20.0.0/16 [110/20] via 172.18.0.2, eth1, weight 1, 00:00:08",
+      "O>* 172.20.0.0/16 [110/20] via 172.18.0.2, eth1, weight 1, 00:00:10"
+    ],
+    [
+      "  *                        via 172.19.0.3, eth0, weight 1, 00:00:08",
+      "  *                        via 172.19.0.3, eth0, weight 1, 00:00:10"
+    ]
+  ],
+  "events": [
+    {
+      "event": "interface down - r1 eth1 (net_b) set down",
+      "observed_s": 20.2,
+      "routers": {
+        "r1": {
+          "first_change_s": 0.32,
+          "converged_s": 0.32,
+          "back_to_before": false,
+          "samples": 115,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [30] 172.19.0.3 eth0; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.19.0.3 eth0",
+          "changes": [
+            {
+              "t": 0.32,
+              "table": "172.18.0.0/16 [30] 172.19.0.3 eth0; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.19.0.3 eth0"
+            }
+          ]
+        },
+        "r2": {
+          "first_change_s": 0.32,
+          "converged_s": 0.32,
+          "back_to_before": false,
+          "samples": 117,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 0.32,
+              "table": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        },
+        "r3": {
+          "first_change_s": 0.33,
+          "converged_s": 0.33,
+          "back_to_before": false,
+          "samples": 113,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [20] 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 0.33,
+              "table": "172.18.0.0/16 [20] 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "event": "interface up - r1 eth1 (net_b) set up",
+      "observed_s": 30.4,
+      "routers": {
+        "r1": {
+          "first_change_s": 0.32,
+          "converged_s": 7.39,
+          "back_to_before": true,
+          "samples": 175,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0",
+          "changes": [
+            {
+              "t": 0.32,
+              "table": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.19.0.3 eth0"
+            },
+            {
+              "t": 7.39,
+              "table": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0"
+            }
+          ]
+        },
+        "r2": {
+          "first_change_s": 12.46,
+          "converged_s": 12.46,
+          "back_to_before": true,
+          "samples": 173,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 12.46,
+              "table": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        },
+        "r3": {
+          "first_change_s": 0.33,
+          "converged_s": 0.33,
+          "back_to_before": true,
+          "samples": 174,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 0.33,
+              "table": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "event": "silent cut - r1's net_b link detached from br-67231e6eab69 on the host; both interfaces stay UP",
+      "observed_s": 60.1,
+      "routers": {
+        "r1": {
+          "first_change_s": 35.29,
+          "converged_s": 38.15,
+          "back_to_before": false,
+          "samples": 346,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.19.0.3 eth0",
+          "changes": [
+            {
+              "t": 35.29,
+              "table": "172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.19.0.3 eth0"
+            },
+            {
+              "t": 38.15,
+              "table": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.19.0.3 eth0"
+            }
+          ]
+        },
+        "r2": {
+          "first_change_s": 35.41,
+          "converged_s": 35.41,
+          "back_to_before": false,
+          "samples": 337,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 35.41,
+              "table": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        },
+        "r3": {
+          "first_change_s": null,
+          "converged_s": null,
+          "back_to_before": true,
+          "samples": 350,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1",
+          "changes": []
+        }
+      }
+    },
+    {
+      "event": "silent repair - re-attached to br-67231e6eab69",
+      "observed_s": 60.2,
+      "routers": {
+        "r1": {
+          "first_change_s": 7.56,
+          "converged_s": 7.56,
+          "back_to_before": true,
+          "samples": 340,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0",
+          "changes": [
+            {
+              "t": 7.56,
+              "table": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0"
+            }
+          ]
+        },
+        "r2": {
+          "first_change_s": 14.67,
+          "converged_s": 14.67,
+          "back_to_before": true,
+          "samples": 335,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 14.67,
+              "table": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        },
+        "r3": {
+          "first_change_s": null,
+          "converged_s": null,
+          "back_to_before": true,
+          "samples": 339,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1",
+          "changes": []
+        }
+      }
+    },
+    {
+      "event": "cost change - r1 eth0 (net_a) cost 10 -> 100, no link goes down",
+      "observed_s": 20.3,
+      "routers": {
+        "r1": {
+          "first_change_s": 0.39,
+          "converged_s": 0.39,
+          "back_to_before": false,
+          "samples": 115,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [30] 172.18.0.2 eth1; 172.20.0.0/16 [20] 172.18.0.2 eth1",
+          "changes": [
+            {
+              "t": 0.39,
+              "table": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [30] 172.18.0.2 eth1; 172.20.0.0/16 [20] 172.18.0.2 eth1"
+            }
+          ]
+        },
+        "r2": {
+          "first_change_s": 0.41,
+          "converged_s": 0.41,
+          "back_to_before": false,
+          "samples": 115,
+          "poll_interval_s": 0.17,
+          "final": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 0.41,
+              "table": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        },
+        "r3": {
+          "first_change_s": null,
+          "converged_s": null,
+          "back_to_before": true,
+          "samples": 113,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1",
+          "changes": []
+        }
+      }
+    },
+    {
+      "event": "cost restore - r1 eth0 (net_a) cost 100 -> 10",
+      "observed_s": 20.3,
+      "routers": {
+        "r1": {
+          "first_change_s": 0.36,
+          "converged_s": 0.36,
+          "back_to_before": true,
+          "samples": 114,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0",
+          "changes": [
+            {
+              "t": 0.36,
+              "table": "172.18.0.0/16 [10] connected eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [20] 172.18.0.2 eth1 | 172.19.0.3 eth0"
+            }
+          ]
+        },
+        "r2": {
+          "first_change_s": 0.36,
+          "converged_s": 0.36,
+          "back_to_before": true,
+          "samples": 113,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1",
+          "changes": [
+            {
+              "t": 0.36,
+              "table": "172.18.0.0/16 [10] connected eth0; 172.19.0.0/16 [20] 172.18.0.3 eth0 | 172.20.0.3 eth1; 172.20.0.0/16 [10] connected eth1"
+            }
+          ]
+        },
+        "r3": {
+          "first_change_s": null,
+          "converged_s": null,
+          "back_to_before": true,
+          "samples": 113,
+          "poll_interval_s": 0.18,
+          "final": "172.18.0.0/16 [20] 172.19.0.2 eth0 | 172.20.0.2 eth1; 172.19.0.0/16 [10] connected eth0; 172.20.0.0/16 [10] connected eth1",
+          "changes": []
+        }
+      }
+    }
+  ]
+}
