@@ -1,0 +1,45 @@
+# arp -a -N 192.168.219.111 every 0.5 s after the clear, before any ping
+===== +0.0 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+===== +0.6 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+===== +1.1 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+===== +1.7 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+===== +2.2 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+  192.168.219.100       28-6d-97-e3-46-da     dynamic   
+===== +2.8 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+  192.168.219.100       28-6d-97-e3-46-da     dynamic   
+===== +3.3 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+  192.168.219.100       28-6d-97-e3-46-da     dynamic   
+===== +3.8 s after the clear
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+  192.168.219.100       28-6d-97-e3-46-da     dynamic   

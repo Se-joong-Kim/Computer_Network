@@ -1,0 +1,11 @@
+
+Interface: 192.168.219.111 --- 0x10
+  Internet Address      Physical Address      Type
+  192.168.219.1         80-ca-4b-02-76-35     dynamic   
+  192.168.219.100       28-6d-97-e3-46-da     dynamic   
+
+Interface: 100.111.74.12 --- 0x25
+  Internet Address      Physical Address      Type
+  100.78.228.42                               dynamic   
+  100.100.100.100                             dynamic   
+  100.127.59.21                               dynamic   

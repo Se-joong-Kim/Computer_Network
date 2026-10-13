@@ -1,0 +1,147 @@
+{
+  "capture": {
+    "file": "out/arp.pcapng (Ethernet II)",
+    "raw": "out/arp-pktmon-raw.pcapng",
+    "frames": 21,
+    "link_as_captured": "802.11",
+    "seconds": 51.3,
+    "my_ip": "192.168.219.111",
+    "my_mac": "58:86:94:fe:83:ab",
+    "gateway": "192.168.219.1"
+  },
+  "A2": {
+    "first_request_after_clear": {
+      "frame": 5,
+      "for": "192.168.219.1",
+      "ms_after_clear": 77.5
+    },
+    "ms_before_my_ping": 4368,
+    "first_refill_snapshot": {
+      "s_after_clear": 0.0,
+      "dynamic": [
+        "192.168.219.1"
+      ]
+    }
+  },
+  "A3": {
+    "192.168.219.111": {
+      "before": 10,
+      "before_dynamic": 3,
+      "after": 2,
+      "after_dynamic": 2
+    },
+    "100.111.74.12": {
+      "before": 6,
+      "before_dynamic": 2,
+      "after": 3,
+      "after_dynamic": 3
+    },
+    "172.18.128.1": {
+      "before": 6,
+      "before_dynamic": 0,
+      "after": 0,
+      "after_dynamic": 0
+    }
+  },
+  "A4": {
+    "server": "www.korea.ac.kr",
+    "addresses": [
+      "163.152.6.10"
+    ],
+    "in_arp_after": [],
+    "wifi_entries_outside_my_subnet": []
+  },
+  "B1": {
+    "request": {
+      "n": 5,
+      "ms_after_clear": 77.5,
+      "da": "ff:ff:ff:ff:ff:ff",
+      "sa": "58:86:94:fe:83:ab",
+      "op": "request",
+      "sender_ip": "192.168.219.111",
+      "target_ip": "192.168.219.1",
+      "target_mac": "00:00:00:00:00:00"
+    },
+    "reply": {
+      "n": 6,
+      "ms_after_clear": 81.3,
+      "da": "58:86:94:fe:83:ab",
+      "sa": "80:ca:4b:02:76:35",
+      "op": "reply",
+      "sender_ip": "192.168.219.1",
+      "sender_mac": "80:ca:4b:02:76:35"
+    },
+    "reply_after_ms": 3.8
+  },
+  "B2": {
+    "request_destination": "ff:ff:ff:ff:ff:ff",
+    "reply_destination": "58:86:94:fe:83:ab",
+    "reply_destination_is_me": true
+  },
+  "B3": {
+    "my_requests_by_target": {
+      "192.168.219.100": [
+        {
+          "frame": 3,
+          "ms_after_clear": -2081.7,
+          "broadcast": false
+        },
+        {
+          "frame": 7,
+          "ms_after_clear": 1731.1,
+          "broadcast": true
+        },
+        {
+          "frame": 9,
+          "ms_after_clear": 8419.2,
+          "broadcast": false
+        },
+        {
+          "frame": 11,
+          "ms_after_clear": 17928.0,
+          "broadcast": false
+        },
+        {
+          "frame": 14,
+          "ms_after_clear": 28422.6,
+          "broadcast": false
+        },
+        {
+          "frame": 18,
+          "ms_after_clear": 38430.6,
+          "broadcast": false
+        },
+        {
+          "frame": 20,
+          "ms_after_clear": 48425.7,
+          "broadcast": false
+        }
+      ],
+      "192.168.219.1": [
+        {
+          "frame": 5,
+          "ms_after_clear": 77.5,
+          "broadcast": true
+        }
+      ]
+    },
+    "overheard_broadcasts": [
+      {
+        "frame": 13,
+        "from": "192.168.219.101",
+        "for": "192.168.219.1",
+        "answer_seen": false
+      }
+    ]
+  },
+  "B4": {
+    "frames_in_60s": 21,
+    "broadcast": 3,
+    "broadcast_not_caused_by_clear": 1,
+    "unicast": 18,
+    "campus_machines_assumed": 1000,
+    "campus_frames_per_min": 21000,
+    "campus_broadcasts_per_s_each_machine_hears": 50.0,
+    "campus_broadcasts_per_s_steady": 16.7
+  }
+}

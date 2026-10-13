@@ -1,0 +1,11 @@
+
+  48 ports, 400 stations, table capacity 64, 48,954 frames
+
+  baseline     wasted   323,380   delivered 46,347   missed      0
+  yours        wasted   163,806   delivered 46,347   missed      0
+
+   ok    no additional missed deliveries
+   wasted deliveries cut by 49%
+
+   -> strong
+

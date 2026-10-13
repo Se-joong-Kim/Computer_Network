@@ -1,0 +1,22 @@
+
+1791866768981  13:46:08.985  interface Wi-Fi me 192.168.219.111 mac 58-86-94-FE-83-AB gateway 192.168.219.1
+1791866769022  13:46:09.022  arp-before saved
+1791866769211  13:46:09.211  capture started
+1791866772228  13:46:12.228  CLEAR
+1791866772338  13:46:12.338  arp-cleared saved
+1791866776674  13:46:16.675  ping gateway
+
+Pinging 192.168.219.1 with 32 bytes of data:
+Reply from 192.168.219.1: bytes=32 time=3ms TTL=64
+Reply from 192.168.219.1: bytes=32 time=3ms TTL=64
+Reply from 192.168.219.1: bytes=32 time=2ms TTL=64
+
+Ping statistics for 192.168.219.1:
+    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 2ms, Maximum = 3ms, Average = 2ms
+1791866778718  13:46:18.718  curl www.korea.ac.kr
+1791866778919  13:46:18.919  curl done
+1791866778951  13:46:18.951  arp-after saved
+1791866830680  13:47:10.680  capture stopped
+1791866830767  13:47:10.767  converted to pcapng

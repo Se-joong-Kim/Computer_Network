@@ -1,0 +1,17 @@
+
+  48 ports, table 64; during the middle third of the trace one port sends 3 frames from fake source MACs per real frame
+
+  attacker reuses each fake MAC switch           legit unicast flooded  copies to attacker
+    1 time(s)                    baseline         7,554 of 15,451 ( 49%)         7,541
+    1 time(s)                    yours            1,999 of 15,451 ( 13%)         1,997
+
+    2 time(s)                    baseline         6,210 of 15,451 ( 40%)         6,201
+    2 time(s)                    yours            2,213 of 15,451 ( 14%)         2,211
+
+    5 time(s)                    baseline         4,819 of 15,451 ( 31%)         4,812
+    5 time(s)                    yours            2,577 of 15,451 ( 17%)         2,574
+
+  Without the attack, the same window floods:
+    baseline   2,336 of 15,451 (15%)
+    yours      1,194 of 15,451 (8%)
+
